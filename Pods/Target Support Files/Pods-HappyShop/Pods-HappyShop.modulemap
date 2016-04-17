@@ -1,0 +1,6 @@
+framework module Pods_HappyShop {
+  umbrella header "Pods-HappyShop-umbrella.h"
+
+  export *
+  module * { export * }
+}
