@@ -6,6 +6,7 @@ use_frameworks!
 target 'HappyShop' do
 pod 'AFNetworking'
 pod 'SwiftyJSON'
+pod 'SDWebImage'
 end
 
 target 'HappyShopTests' do

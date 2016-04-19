@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '26ACD5DA24393668211951E1'
+               BlueprintIdentifier = '1971C9E4A4A560610076D279'
                BlueprintName = 'Pods-HappyShop'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_HappyShop.framework'>

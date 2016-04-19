@@ -85,9 +85,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-HappyShop/AFNetworking.framework"
+  install_framework "Pods-HappyShop/SDWebImage.framework"
   install_framework "Pods-HappyShop/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-HappyShop/AFNetworking.framework"
+  install_framework "Pods-HappyShop/SDWebImage.framework"
   install_framework "Pods-HappyShop/SwiftyJSON.framework"
 fi

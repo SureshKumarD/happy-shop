@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CategoriesCollectionCell" customModule="HappyShop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGl-xR-m8I">
+                        <rect key="frame" x="10" y="10" width="180" height="180"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAA-Kf-UsE">
+                                <rect key="frame" x="10" y="70" width="160" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dI7-yG-qhF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VAA-Kf-UsE" firstAttribute="centerY" secondItem="zGl-xR-m8I" secondAttribute="centerY" id="CaR-HP-Mpx"/>
+                            <constraint firstItem="VAA-Kf-UsE" firstAttribute="leading" secondItem="zGl-xR-m8I" secondAttribute="leading" constant="10" id="ixu-RP-UKT"/>
+                            <constraint firstAttribute="trailing" secondItem="VAA-Kf-UsE" secondAttribute="trailing" constant="10" id="juW-ip-C7f"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="zGl-xR-m8I" secondAttribute="trailing" constant="10" id="RVZ-oo-ovW"/>
+                <constraint firstAttribute="bottom" secondItem="zGl-xR-m8I" secondAttribute="bottom" constant="10" id="TZL-8M-yiI"/>
+                <constraint firstItem="zGl-xR-m8I" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="eYw-z5-QnR"/>
+                <constraint firstItem="zGl-xR-m8I" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="pFC-jP-81B"/>
+            </constraints>
+            <size key="customSize" width="173" height="146"/>
+            <connections>
+                <outlet property="categoryContainerView" destination="zGl-xR-m8I" id="3u6-Z7-QON"/>
+                <outlet property="categoryNameLabel" destination="VAA-Kf-UsE" id="2mg-g2-C4x"/>
+            </connections>
+            <point key="canvasLocation" x="300" y="368"/>
+        </collectionViewCell>
+    </objects>
+</document>
