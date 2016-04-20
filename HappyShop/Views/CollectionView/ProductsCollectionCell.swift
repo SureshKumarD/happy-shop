@@ -18,12 +18,12 @@ class ProductsCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = 5.0
-        self.layer.borderColor = kPINK_COLOR.CGColor
-        self.contentView.backgroundColor = UIColor.clearColor()
+//        self.layer.masksToBounds = true
+//        self.layer.cornerRadius = 5.0
+////        self.layer.borderColor = kPINK_COLOR.CGColor
+//        self.contentView.backgroundColor = kWHITE_COLOR
         //        self.setGradientBackgroundColor( self.categoryContainerView)
-        self.backgroundColor = kSEA_SHELL_COLOR2;
+        self.backgroundColor = kWHITE_COLOR;
     }
 
    

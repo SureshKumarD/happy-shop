@@ -9,12 +9,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HappyShop/Controllers/ProductsViewController.swift"
-            timestampString = "482700220.703494"
+            filePath = "HappyShop/Controllers/ProductViewController.swift"
+            timestampString = "482837377.615735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "populateDataOnUI(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HappyShop/Controllers/ProductsViewController.swift"
-            timestampString = "482700220.703494"
+            filePath = "HappyShop/Controllers/ProductViewController.swift"
+            timestampString = "482837377.615735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "getProductsFromServer()"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getProductFromServer()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HappyShop/Controllers/ProductsViewController.swift"
-            timestampString = "482700220.703494"
+            timestampString = "482875565.194928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "populateDataOnUI(_:)"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "setNavigationRightButton()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HappyShop/Views/CollectionView/ProductsCollectionView.swift"
-            timestampString = "482699708.882065"
+            filePath = "HappyShop/Controllers/ProductsViewController.swift"
+            timestampString = "482875565.194928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "setNavigationRightButton()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,46 +73,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HappyShop/Views/CollectionView/ProductsCollectionView.swift"
-            timestampString = "482699708.882065"
+            filePath = "HappyShop/Controllers/ProductsViewController.swift"
+            timestampString = "482875565.194928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "collectionView(_:cellForItemAtIndexPath:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HappyShop/Views/Extensions/UIScrollView+Custom.swift"
-            timestampString = "482699826.125004"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "fetchProducts()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HappyShop/Views/Extensions/UIScrollView+Custom.swift"
-            timestampString = "482699969.553939"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "scrollViewDidScroll(_:)"
-            landmarkType = "5">
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "ProductsViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

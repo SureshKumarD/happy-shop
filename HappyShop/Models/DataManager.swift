@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class DataManager: NSObject {
     //SharedInstance...
@@ -22,6 +23,10 @@ class DataManager: NSObject {
     var currentPage : Int
     var isRequiredLoadNextPage : Bool
     var selectedProductCategory :String!
+    
+    
+    //To the cart...
+    var selectedProductList : [JSON]!
 
     override init() {
         
@@ -30,6 +35,7 @@ class DataManager: NSObject {
 //        self.currentAlbumCategory = AlbumGategory.Hot
         self.currentPage = 0
         self.isRequiredLoadNextPage = false
+        
     }
     
     
@@ -47,7 +53,7 @@ class DataManager: NSObject {
             
         }
         self.activityIndicator?.frame = CGRectMake(WIDTH_WINDOW_FRAME/2 - 50, HEIGHT_WINDOW_FRAME/2-50, 100, 100)
-        self.activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        self.activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         
         let mainWindow = UIApplication.sharedApplication().keyWindow
         mainWindow?.addSubview(self.activityIndicator!)
@@ -61,5 +67,12 @@ class DataManager: NSObject {
         self.activityIndicator?.removeFromSuperview()
     }
 
+    func loadLastAddedProductList() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let items = defaults.valueForKey("kCART_ITEMS")
+        //        let data = NSJSONSerialization.dataWithJSONObject(array, options: nil, error: nil)
+//        let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
+//        self.selectedProductList = JSON(
+    }
 
 }

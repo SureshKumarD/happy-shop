@@ -54,7 +54,7 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
         let url  = NSURL(string:  productObject["img_url"].stringValue)
 
         //Product Image
-        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder2"), options: SDWebImageOptions.CacheMemoryOnly)
+        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
         
         //Product Name
         cell.productNameLabel.text = productObject["name"].stringValue
@@ -82,7 +82,7 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSizeMake((WIDTH_WINDOW_FRAME/2) - 5, WIDTH_WINDOW_FRAME/2 + 50)
+        return CGSizeMake((WIDTH_WINDOW_FRAME/2 - 0.5), WIDTH_WINDOW_FRAME/2 + 50)
        
     }
     
@@ -101,5 +101,6 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
         self.reloadData()
     }
     
-
+    
+    
 }

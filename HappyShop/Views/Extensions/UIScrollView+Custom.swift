@@ -19,12 +19,14 @@ extension UIScrollView : UIScrollViewDelegate {
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         
         //If scrollview is not CategoriesCollectionView quit abruptly...
-        if(!(self.isKindOfClass(CategoriesCollectionView)) == false) {
-        return
+        let isProductsCollectionView = (self.isKindOfClass(ProductsCollectionView)) as Bool
+        let isProductsTableView = (self.isKindOfClass(ProductsTableView)) as Bool
+        if(!((isProductsCollectionView == true ) || ( isProductsTableView == true))) {
+            return;
         }
         
         
-        if(self.contentOffset.y + 100 >= self.contentSize.height - self.bounds.size.height) {
+        if(self.contentOffset.y >= self.contentSize.height - self.bounds.size.height) {
         if(DataManager.sharedDataManager().isRequiredLoadNextPage == false ) {
         DataManager.sharedDataManager().isRequiredLoadNextPage = true
         DataManager.sharedDataManager().currentPage += 1

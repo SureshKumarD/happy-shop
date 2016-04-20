@@ -10,6 +10,8 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    // Token to dispatch once...
+    var dispatchToken : dispatch_once_t = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         //Initiate the Network Monitoring...
@@ -17,7 +19,7 @@ class BaseViewController: UIViewController {
         
         //Set View's gradient background color
         self.setGradientBackgroundColor(self.view);
-    
+        
         
     }
     
@@ -33,6 +35,7 @@ class BaseViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setNavigationBarSettings()
         
         //Remove reachability obser for the current class...
         self.removeReachabilityObserver()
@@ -82,6 +85,16 @@ class BaseViewController: UIViewController {
         
         
     }
+    
+    //MARK:- Set navigationbar font
+    func setNavigationBarSettings() {
+        dispatch_once(&dispatchToken) { () -> Void in
+            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 7)!, NSForegroundColorAttributeName : kBLACK_COLOR]
+            
+        }
+        
+    }
+
 
 
 }

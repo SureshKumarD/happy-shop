@@ -12,7 +12,8 @@ import Foundation
 let URL_BASE  = "https://sephora-mobile-takehome-2.herokuapp.com"
 let API_VERSION = "v1"
 let URL_FRAGMENT_API = "api"
-let URL_DATA_PRODUCTS = "products.json"
+let URL_DATA_PRODUCTS = "products"
+let URL_FRAGMENT_JSON  = ".json"
 
 
 
@@ -36,7 +37,7 @@ let HEIGHT_WINDOW_FRAME =  UIScreen.mainScreen().bounds.size.height
 let kCLEAR_COLOR = UIColor.clearColor()
 let kBLACK_COLOR = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
 let kGRAY_COLOR = UIColor(red: 102/255, green: 102/255, blue: 108/255, alpha: 1.0)
-let kGRAY_COLOR2 = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
+let kGRAY_COLOR2 = UIColor(red: 200/255, green: 199/255, blue: 204/255, alpha: 1.0)
 let kWHITE_COLOR = UIColor.whiteColor()
 let kSUB_TEXT_COLOR = UIColor(red: 99/255, green: 99/255, blue: 99/255, alpha: 1.0)
 let kWHITE_COLOR2 = UIColor(red: 255/255, green: 250/255, blue: 240/255, alpha: 1.0)
@@ -53,3 +54,11 @@ let kPINK_COLOR = UIColor(red: 255/255, green: 240/255, blue: 245/255, alpha: 1.
 
 //Others..
 let kCURRENCY_SYMBOL = "\u{0024}"
+let kCART_ITEMS = "cart_items"
+
+
+
+/* ========= ENUMS =================== */
+enum ProductListingOptions: Int {
+    case Grid = 0, List
+}

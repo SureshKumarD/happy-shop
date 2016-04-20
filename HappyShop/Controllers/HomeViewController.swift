@@ -26,7 +26,7 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "HomeShop"
+        self.title = "HappyShop"
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,8 +48,10 @@ class HomeViewController: BaseViewController, CategoryDelegate {
         self.flowLayout  = UICollectionViewFlowLayout()
         self.flowLayout.minimumInteritemSpacing = 2.5
         self.flowLayout.minimumLineSpacing = 5
-        
-        self.categoriesCollectionView = CategoriesCollectionView(frame: self.view.bounds , collectionViewLayout: flowLayout)
+        var frame : CGRect = self.view.bounds
+        frame.origin.y += 10
+        frame.size.height += 10
+        self.categoriesCollectionView = CategoriesCollectionView(frame: frame , collectionViewLayout: flowLayout)
         self.categoriesCollectionView.backgroundColor = kCLEAR_COLOR
         self.categoriesCollectionView.categoryDelegate = self
         self.view.addSubview(self.categoriesCollectionView)
