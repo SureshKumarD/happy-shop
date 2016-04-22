@@ -99,17 +99,18 @@ class ProductViewController: BaseViewController {
     //Save items in shopping bag...
     func saveShoppingItems() {
         if let cartItems = DataManager.sharedDataManager().selectedProductList.rawString() {
-            do {
-                
-                print("Success : cart items" + "\(cartItems)")
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue(cartItems, forKey: kCART_ITEMS_KEY)
-                defaults.synchronize()
-                
-            } catch let error as NSError {
-                print("error in unwrapping cartitems " + error.localizedDescription)
-                self.showAlertView("Something went wrong", message: "Please try again later!")
-            }
+            KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
+//            do {
+//                
+//                print("Success : cart items" + "\(cartItems)")
+//                
+//                //Save or replace cart items as a string against the key 'kCART_ITEMS_KEY' in DB.
+//                
+//                
+//            } catch let error as NSError {
+//                print("error in unwrapping cartitems " + error.localizedDescription)
+//                self.showAlertView("Something went wrong", message: "Please try again later!")
+//            }
 
         }
         

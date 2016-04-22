@@ -18,6 +18,8 @@
 		F917FD161CCA943A002147C2 /* ShoppingBagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F917FD151CCA943A002147C2 /* ShoppingBagViewController.swift */; };
 		F917FD181CCA9540002147C2 /* ShoppedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F917FD171CCA9540002147C2 /* ShoppedItemCell.swift */; };
 		F917FD1A1CCA9C76002147C2 /* ShoppedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F917FD191CCA9C76002147C2 /* ShoppedItemCell.xib */; };
+		F917FD591CCAD1DC002147C2 /* KeyValueDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F917FD581CCAD1DC002147C2 /* KeyValueDataBaseManager.swift */; };
+		F917FD5C1CCAD2C6002147C2 /* LocalDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F917FD5A1CCAD2C6002147C2 /* LocalDB.xcdatamodeld */; };
 		F92B1C541CC80093008251B3 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F92B1C511CC80093008251B3 /* backArrow.png */; };
 		F92B1C551CC80093008251B3 /* listIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F92B1C521CC80093008251B3 /* listIcon.png */; };
 		F92B1C561CC80093008251B3 /* gridIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = F92B1C531CC80093008251B3 /* gridIcon.png */; };
@@ -75,6 +77,8 @@
 		F917FD151CCA943A002147C2 /* ShoppingBagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewController.swift; sourceTree = "<group>"; };
 		F917FD171CCA9540002147C2 /* ShoppedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppedItemCell.swift; sourceTree = "<group>"; };
 		F917FD191CCA9C76002147C2 /* ShoppedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppedItemCell.xib; sourceTree = "<group>"; };
+		F917FD581CCAD1DC002147C2 /* KeyValueDataBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueDataBaseManager.swift; sourceTree = "<group>"; };
+		F917FD5B1CCAD2C6002147C2 /* LocalDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocalDB.xcdatamodel; sourceTree = "<group>"; };
 		F92B1C511CC80093008251B3 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		F92B1C521CC80093008251B3 /* listIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listIcon.png; sourceTree = "<group>"; };
 		F92B1C531CC80093008251B3 /* gridIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridIcon.png; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				F98473CF1CC41C2C00379B39 /* Constants.swift */,
 				F98473FC1CC4964D00379B39 /* DataManager.swift */,
 				F98473FE1CC4967000379B39 /* NetworkManager.swift */,
+				F917FD581CCAD1DC002147C2 /* KeyValueDataBaseManager.swift */,
 				F98474001CC4B78000379B39 /* Protocols */,
 			);
 			path = Models;
@@ -253,6 +258,7 @@
 				F98473BC1CC418B400379B39 /* Assets.xcassets */,
 				F98473BD1CC418B400379B39 /* LaunchScreen.storyboard */,
 				F98473BF1CC418B400379B39 /* Main.storyboard */,
+				F917FD5A1CCAD2C6002147C2 /* LocalDB.xcdatamodeld */,
 				F98473C11CC418B400379B39 /* Images */,
 			);
 			path = Resources;
@@ -524,7 +530,9 @@
 				F917FD161CCA943A002147C2 /* ShoppingBagViewController.swift in Sources */,
 				F917FD181CCA9540002147C2 /* ShoppedItemCell.swift in Sources */,
 				F98473CE1CC41A8300379B39 /* BaseViewController.swift in Sources */,
+				F917FD591CCAD1DC002147C2 /* KeyValueDataBaseManager.swift in Sources */,
 				F9EA98431CC5443700969B6B /* ProductsViewController.swift in Sources */,
+				F917FD5C1CCAD2C6002147C2 /* LocalDB.xcdatamodeld in Sources */,
 				F98474021CC4B7B400379B39 /* Protocols.swift in Sources */,
 				F98473FA1CC4279E00379B39 /* ProductsTableCell.swift in Sources */,
 				F98473D01CC41C2C00379B39 /* Constants.swift in Sources */,
@@ -780,6 +788,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F917FD5A1CCAD2C6002147C2 /* LocalDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F917FD5B1CCAD2C6002147C2 /* LocalDB.xcdatamodel */,
+			);
+			currentVersion = F917FD5B1CCAD2C6002147C2 /* LocalDB.xcdatamodel */;
+			path = LocalDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F984737D1CC416CE00379B39 /* Project object */;
 }

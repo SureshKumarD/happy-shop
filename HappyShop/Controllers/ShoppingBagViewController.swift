@@ -203,18 +203,17 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     //Save items in shopping bag...
     func saveShoppingItems() {
         if let cartItems = DataManager.sharedDataManager().selectedProductList.rawString() {
-            do {
-                
-                print("Success : cart items" + "\(cartItems)")
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setValue(cartItems, forKey: kCART_ITEMS_KEY)
-                defaults.synchronize()
-                self.loadShoppedItemsArray()
-                self.itemsTableView.reloadData()
-                
-            } catch let error as NSError {
-                print("error in unwrapping cartitems " + error.localizedDescription)
-            }
+            print("Success : cart items" + "\(cartItems)")
+            KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
+            self.loadShoppedItemsArray()
+            self.itemsTableView.reloadData()
+//            do {
+//                
+//                
+//                
+//            } catch let error as NSError {
+//                print("error in unwrapping cartitems " + error.localizedDescription)
+//            }
             
         }
         

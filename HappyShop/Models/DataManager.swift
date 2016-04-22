@@ -33,8 +33,8 @@ class DataManager: NSObject {
         self.currentPage = 0
         self.isRequiredLoadNextPage = false
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let jsonString = defaults.valueForKey(kCART_ITEMS_KEY) as? String
+       
+        let jsonString = KeyValueDataBaseManager.objectStringForKey(kCART_ITEMS_KEY)
         if((jsonString?.isEmpty) == false) {
             let jsonObject = DataManager.convertStringToDictionary(jsonString!)! as JSON
             self.selectedProductList = jsonObject
@@ -54,8 +54,7 @@ class DataManager: NSObject {
     
     
     class func sharedDataManager()-> DataManager! {
-        
-       
+        //Returns the static, singleton instance...
         return dataManager
     }
     
@@ -69,7 +68,6 @@ class DataManager: NSObject {
         }
         self.activityIndicator?.frame = CGRectMake(WIDTH_WINDOW_FRAME/2 - 50, HEIGHT_WINDOW_FRAME/2-50, 100, 100)
         self.activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        
         let mainWindow = UIApplication.sharedApplication().keyWindow
         mainWindow?.addSubview(self.activityIndicator!)
         
