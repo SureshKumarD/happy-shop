@@ -55,7 +55,7 @@ let kPINK_COLOR = UIColor(red: 255/255, green: 240/255, blue: 245/255, alpha: 1.
 //Others..
 let kCURRENCY_SYMBOL = "\u{0024}"
 let kCART_ITEMS = "cart_items"
-
+let kCART_ITEMS_KEY = "cart_items_key"
 
 
 /* ========= ENUMS =================== */

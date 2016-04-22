@@ -30,10 +30,8 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
     
     //Navigation Items...
-    var leftBarButtonItem : UIBarButtonItem!
-    var rightBarButtonItem : UIBarButtonItem!
-    var navigationLeftButton : UIButton!
-    var navigationRightButton : UIButton!
+   
+    var rightButton : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +42,10 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = DataManager.sharedDataManager().selectedProductCategory 
+        
+        //Set navigation title...
+        let titleString = DataManager.sharedDataManager().selectedProductCategory as String!
+        self.setNavigationTitle(titleString)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -86,7 +87,6 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     //Do Navigation bar initial settings...
     func  navigationBarDefaultSettings() {
 
-        self.setNavigationLeftButton()
         self.setNavigationRightButton()
         self.navigationController?.navigationBar.translucent = false
 
@@ -132,32 +132,6 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         self.productsTableView.frame = self.containerView.bounds
     }
     
-    //MARK:- NavigationBar
-    //Left Button...
-    func setNavigationLeftButton() {
-        
-        if(self.navigationLeftButton == nil) {
-            self.navigationLeftButton = UIButton(type: UIButtonType.System)
-        }
-        self.navigationLeftButton.frame = CGRectMake(0, 0, 50, 50)
-        self.navigationLeftButton.imageEdgeInsets = UIEdgeInsetsMake(15,12,15,12)
-        self.navigationLeftButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 10)
-    
-        let image = UIImage(named: "backArrow")
-        let newImage = image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
-        
-        self.navigationLeftButton.setImage(newImage, forState: .Normal)
-        self.navigationLeftButton.tintColor = kBLACK_COLOR
-
-        
-        self.navigationLeftButton.imageView?.contentMode = UIViewContentMode.Center
-        self.navigationLeftButton.addTarget(self, action: Selector("backButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.leftBarButtonItem.customView = self.navigationLeftButton
-        self.navigationItem.leftBarButtonItem = self.leftBarButtonItem
-        
-        
-    }
-    
     //Right Button...
     func setNavigationRightButton() {
         if(self.navigationRightButton == nil) {
@@ -170,17 +144,11 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         
         self.navigationRightButton.imageView?.contentMode = UIViewContentMode.Center
         self.navigationRightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.rightBarButtonItem.customView = self.navigationRightButton
-        self.navigationItem.rightBarButtonItem = self.rightBarButtonItem
+        self.setTopRightButton(self.navigationRightButton)
         
     }
     
-    //MARK:- Navigaton Action Handlers
-    //BackButtonTapped
-    func backButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
+        
     //RightButtonTapped
     func rightButtonTapped() {
         self.changeProductListingView()
@@ -278,7 +246,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
     //MARK:- Populate Data On UI
     func populateDataOnUI(jsonData: JSON!) {
-        self.containerView.backgroundColor = kGRAY_COLOR2
+        self.productsCollectionView.backgroundColor = kGRAY_COLOR2
         self.productsCollectionView.productsArray = jsonData["products"].arrayValue 
         self.productsCollectionView.reloadData()
         self.productsTableView.productsArray = jsonData["products"].arrayValue

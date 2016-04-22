@@ -23,7 +23,7 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
         super.init(frame: frame, collectionViewLayout: layout)
         self.delegate = self
         self.dataSource = self
-        
+        self.backgroundColor = kCLEAR_COLOR
         self.numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         
     }
@@ -57,7 +57,12 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSizeMake((WIDTH_WINDOW_FRAME/2) - 2.5, (WIDTH_WINDOW_FRAME/2) - 2.5)
+        if(indexPath.row % 3 == NUMBER_ZERO) {
+            return CGSizeMake((WIDTH_WINDOW_FRAME - 2), WIDTH_WINDOW_FRAME/2)
+        }else {
+            return CGSizeMake((WIDTH_WINDOW_FRAME/2 - 0.5), WIDTH_WINDOW_FRAME/2)
+        }
+        
         
     }
     
@@ -68,11 +73,6 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
             self.categoryDelegate.categorySelected(object)
     }
     
-    //    //MARK: - SUPERCLASS's method overriden
-    //    override func reloadTableOrCollectionView(objects: [AnyObject]!) {
-    //        self.productsArray += objects
-    //        self.reloadData()
-    //    }
 
 
 }

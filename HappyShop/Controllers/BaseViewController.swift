@@ -12,11 +12,20 @@ class BaseViewController: UIViewController {
     
     // Token to dispatch once...
     var dispatchToken : dispatch_once_t = 0
+    
+    //Navigation Items...
+    var leftBarButtonItem : UIBarButtonItem!
+    var rightBarButtonItem : UIBarButtonItem!
+    var navigationLeftButton : UIButton!
+    var navigationRightButton : UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Initiate the Network Monitoring...
         AFNetworkReachabilityManager.sharedManager().startMonitoring();
         
+        
+        self.defaultStylingAndProperties()
         //Set View's gradient background color
         self.setGradientBackgroundColor(self.view);
         
@@ -35,12 +44,87 @@ class BaseViewController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationBarSettings()
+        
         
         //Remove reachability obser for the current class...
         self.removeReachabilityObserver()
 
     }
+    
+    //MARK:- METHODS
+    func defaultStylingAndProperties() {
+        
+        
+        //Navigation - right, left barbuttonitem allocation.
+        self.leftBarButtonItem = UIBarButtonItem()
+        self.rightBarButtonItem = UIBarButtonItem()
+    
+        self.setNavigationBackButton()
+        self.setNavigationBarSettings()
+        
+        
+    }
+    func setNavigationTitle(title : String!) {
+        self.title = title
+    }
+    
+    func setNavigationBarColor(color : UIColor) {
+        self.navigationController?.navigationBar.barTintColor = color
+    }
+    
+    func setNavigationBarTintColor(color : UIColor) {
+        self.navigationController?.navigationBar.tintColor = color
+    }
+    
+    //BackButton...
+    func setNavigationBackButton() {
+        let viewControllers = (self.navigationController?.viewControllers)! as NSArray
+        
+        if(viewControllers.count == NUMBER_ONE) {
+            return
+        }
+        if(self.navigationLeftButton == nil) {
+            self.navigationLeftButton = UIButton(type: UIButtonType.System)
+        }
+        self.navigationLeftButton.frame = CGRectMake(0, 0, 50, 50)
+        self.navigationLeftButton.imageEdgeInsets = UIEdgeInsetsMake(15,12,15,12)
+        self.navigationLeftButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 10)
+    
+        let image = UIImage(named: "backArrow")
+        let newImage = image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
+    
+        self.navigationLeftButton.setImage(newImage, forState: .Normal)
+        self.navigationLeftButton.tintColor = kBLACK_COLOR
+    
+    
+        self.navigationLeftButton.imageView?.contentMode = UIViewContentMode.Center
+        self.navigationLeftButton.addTarget(self, action: Selector("backButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.leftBarButtonItem.customView = self.navigationLeftButton
+        self.navigationItem.leftBarButtonItem = self.leftBarButtonItem
+    }
+
+    
+    //Right Button...
+    func setTopRightButton(rightButton : UIButton!) {
+        self.rightBarButtonItem.customView = rightButton
+        self.navigationItem.rightBarButtonItem = self.rightBarButtonItem
+        
+    }
+    
+    //Back Button...
+    func setTopLeftButton(leftButton : UIButton!) {
+        self.leftBarButtonItem.customView = leftButton
+        self.navigationItem.rightBarButtonItem = self.leftBarButtonItem
+        
+    }
+    
+    //MARK:- Navigaton Action Handlers
+    //BackButtonTapped
+    func backButtonTapped() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
+
     
     //MARK:- Reachability observer - notifier
     //Add Reachability Observer
@@ -89,7 +173,7 @@ class BaseViewController: UIViewController {
     //MARK:- Set navigationbar font
     func setNavigationBarSettings() {
         dispatch_once(&dispatchToken) { () -> Void in
-            UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 7)!, NSForegroundColorAttributeName : kBLACK_COLOR]
+            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 15)!, NSForegroundColorAttributeName : kBLACK_COLOR]
             
         }
         

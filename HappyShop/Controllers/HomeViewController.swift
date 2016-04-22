@@ -26,7 +26,7 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "HappyShop"
+        self.setNavigationTitle("HappyShop")
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,12 +46,10 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     func collectionViewDefaultSettings() {
         //CollectionView...
         self.flowLayout  = UICollectionViewFlowLayout()
-        self.flowLayout.minimumInteritemSpacing = 2.5
-        self.flowLayout.minimumLineSpacing = 5
-        var frame : CGRect = self.view.bounds
-        frame.origin.y += 10
-        frame.size.height += 10
-        self.categoriesCollectionView = CategoriesCollectionView(frame: frame , collectionViewLayout: flowLayout)
+        self.flowLayout.minimumInteritemSpacing = 0.5
+        self.flowLayout.minimumLineSpacing = 1
+        
+        self.categoriesCollectionView = CategoriesCollectionView(frame: self.view.bounds , collectionViewLayout: flowLayout)
         self.categoriesCollectionView.backgroundColor = kCLEAR_COLOR
         self.categoriesCollectionView.categoryDelegate = self
         self.view.addSubview(self.categoriesCollectionView)
@@ -67,7 +65,12 @@ class HomeViewController: BaseViewController, CategoryDelegate {
 
 
     
-    
+    //Handler when view did finish layout...
+    override func didFinishLayout() {
+        self.categoriesCollectionView.frame = self.view.bounds
+        
+    }
+
     
     
     

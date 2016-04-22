@@ -26,21 +26,36 @@ class DataManager: NSObject {
     
     
     //To the cart...
-    var selectedProductList : [JSON]!
+    var selectedProductList : JSON = [:]
 
     override init() {
         
-//        //Initialize all data members...
-//        self.isViral = true
-//        self.currentAlbumCategory = AlbumGategory.Hot
         self.currentPage = 0
         self.isRequiredLoadNextPage = false
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let jsonString = defaults.valueForKey(kCART_ITEMS_KEY) as? String
+        if((jsonString?.isEmpty) == false) {
+            let jsonObject = DataManager.convertStringToDictionary(jsonString!)! as JSON
+            self.selectedProductList = jsonObject
+        }
+        super.init()
         
     }
     
     
+    class func convertStringToDictionary(jsonString: String) -> JSON? {
+        if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+            let json = JSON(data: dataFromString)
+            return json
+        }
+        return nil
+    }
+    
     
     class func sharedDataManager()-> DataManager! {
+        
+       
         return dataManager
     }
     
@@ -67,12 +82,5 @@ class DataManager: NSObject {
         self.activityIndicator?.removeFromSuperview()
     }
 
-    func loadLastAddedProductList() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let items = defaults.valueForKey("kCART_ITEMS")
-        //        let data = NSJSONSerialization.dataWithJSONObject(array, options: nil, error: nil)
-//        let string = NSString(data: data!, encoding: NSUTF8StringEncoding)
-//        self.selectedProductList = JSON(
-    }
-
+   
 }

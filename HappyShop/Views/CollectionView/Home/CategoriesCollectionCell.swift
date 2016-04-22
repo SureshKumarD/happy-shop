@@ -15,12 +15,10 @@ class CategoriesCollectionCell: UICollectionViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = 5.0
-        self.layer.borderColor = kPINK_COLOR.CGColor
+        self.layer.borderColor = kGRAY_COLOR2.CGColor
+        self.layer.borderWidth = 0.5
         self.contentView.backgroundColor = UIColor.clearColor()
-//        self.setGradientBackgroundColor( self.categoryContainerView)
-        self.backgroundColor = kSEA_SHELL_COLOR2;
+        self.backgroundColor = kCLEAR_COLOR;
         
     }
     
