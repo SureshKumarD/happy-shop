@@ -148,7 +148,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
         
     //RightButtonTapped
-    private func rightButtonTapped() {
+    func rightButtonTapped() {
         self.changeProductListingView()
     }
     
