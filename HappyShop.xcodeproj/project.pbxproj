@@ -48,6 +48,8 @@
 		F9F0AE021CCAF272008BD59E /* Buy-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0AE011CCAF272008BD59E /* Buy-icon.png */; };
 		F9F0AE041CCAF366008BD59E /* icon_shop.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0AE031CCAF366008BD59E /* icon_shop.png */; };
 		F9F0AE061CCB7F20008BD59E /* gridIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0AE051CCB7F20008BD59E /* gridIcon2.png */; };
+		F9F0AE081CCBFF22008BD59E /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F0AE071CCBFF22008BD59E /* DataManagerTests.swift */; };
+		F9F0AE0A1CCC0610008BD59E /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F0AE091CCC0610008BD59E /* NetworkManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		F9F0AE011CCAF272008BD59E /* Buy-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buy-icon.png"; sourceTree = "<group>"; };
 		F9F0AE031CCAF366008BD59E /* icon_shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_shop.png; sourceTree = "<group>"; };
 		F9F0AE051CCB7F20008BD59E /* gridIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridIcon2.png; sourceTree = "<group>"; };
+		F9F0AE071CCBFF22008BD59E /* DataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		F9F0AE091CCC0610008BD59E /* NetworkManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,8 @@
 			isa = PBXGroup;
 			children = (
 				F984739D1CC416CE00379B39 /* HappyShopTests.swift */,
+				F9F0AE071CCBFF22008BD59E /* DataManagerTests.swift */,
+				F9F0AE091CCC0610008BD59E /* NetworkManagerTests.swift */,
 				F984739F1CC416CE00379B39 /* Info.plist */,
 			);
 			path = HappyShopTests;
@@ -560,7 +566,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F0AE0A1CCC0610008BD59E /* NetworkManagerTests.swift in Sources */,
 				F984739E1CC416CE00379B39 /* HappyShopTests.swift in Sources */,
+				F9F0AE081CCBFF22008BD59E /* DataManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

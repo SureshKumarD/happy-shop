@@ -21,7 +21,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CtS-eS-txr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pID-79-o2k">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -40,11 +40,11 @@
                         <viewControllerLayoutGuide type="bottom" id="xDu-KM-vID"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="S4L-r3-6wx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BA5-Ur-mxh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -255,20 +255,20 @@
                         <viewControllerLayoutGuide type="bottom" id="0qU-eY-IOX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Edb-VM-GfN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsn-tq-N6K">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xu-49-juo">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlz-90-WUr">
-                                                <rect key="frame" x="15" y="15" width="290" height="80"/>
+                                                <rect key="frame" x="15" y="15" width="570" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrn-yM-rau">
-                                                        <rect key="frame" x="10" y="15" width="270" height="21"/>
+                                                        <rect key="frame" x="10" y="15" width="550" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="anA-Rb-6hQ"/>
                                                         </constraints>
@@ -277,7 +277,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7y-pe-147">
-                                                        <rect key="frame" x="10" y="44" width="270" height="21"/>
+                                                        <rect key="frame" x="10" y="44" width="550" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="3C0-LR-znk"/>
                                                         </constraints>
@@ -298,17 +298,17 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lzg-00-GGS">
-                                                <rect key="frame" x="0.0" y="110" width="320" height="458"/>
+                                                <rect key="frame" x="0.0" y="110" width="600" height="490"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="167" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jwj-Lm-HQr">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="458"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="490"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoItemsCell" rowHeight="60" id="Swd-hd-Cgq">
-                                                                <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Swd-hd-Cgq" id="4WG-ab-bcu">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Your shopping bag is empty&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ndz-Lu-SzV">

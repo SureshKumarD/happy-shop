@@ -45,7 +45,7 @@ class DataManager: NSObject {
         //It's required to valueString only, so, unwrap and store it in singleton object.
         let jsonString = KeyValueDataBaseManager.objectStringForKey(kCART_ITEMS_KEY)
         if((jsonString.valueString?.isEmpty) == false) {
-            let jsonObject = DataManager.convertStringToDictionary(jsonString.valueString!)! as JSON
+            let jsonObject = DataManager.convertStringToJSON(jsonString.valueString!)! as JSON
             self.selectedProductList = jsonObject
         }
         super.init()
@@ -55,7 +55,7 @@ class DataManager: NSObject {
     //MARK:- METHODS
     
     //Convert the string into JSON object...
-    class func convertStringToDictionary(jsonString: String) -> JSON? {
+    class func convertStringToJSON(jsonString: String) -> JSON? {
         if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
             return json
