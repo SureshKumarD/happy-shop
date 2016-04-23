@@ -16,8 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //Set Navigation Status Bar Color to Custom Blue Color.
         self.setStatusBarBackgroundColor(kBLUE_COLOR)
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -107,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    //MARK: - Navigation
+    //MARK: - Navigation Status Bar Color
     func setStatusBarBackgroundColor(color: UIColor) {
         
         guard  let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView else {

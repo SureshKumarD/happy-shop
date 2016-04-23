@@ -207,8 +207,9 @@ class ProductViewController: BaseViewController {
 
     //MARK:- Alert local
     func showAlertView(title: String!, message : String!) {
-        let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
+        let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: nil)
         alertView.show()
+        alertView.closAlertAfterDelay(3.0)
     }
 
     func populateDataOnUI(jsonData : JSON) {
