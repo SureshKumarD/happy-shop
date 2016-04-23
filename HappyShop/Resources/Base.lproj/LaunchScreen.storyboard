@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,10 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HappyShop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fl-Oo-Fq3">
-                                <rect key="frame" x="15" y="273" width="290" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="HappyShop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fl-Oo-Fq3">
+                                <rect key="frame" x="15" y="120" width="290" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="qfd-GW-pOM"/>
+                                    <constraint firstAttribute="height" secondItem="6Fl-Oo-Fq3" secondAttribute="width" multiplier="21:290" id="42O-qz-1vb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -29,16 +31,26 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2627450980392157" green="0.64313725490196072" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6Fl-Oo-Fq3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8oi-0G-vFp"/>
-                            <constraint firstAttribute="trailing" secondItem="6Fl-Oo-Fq3" secondAttribute="trailing" constant="15" id="tgF-Sm-bur"/>
-                            <constraint firstItem="6Fl-Oo-Fq3" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="15" id="z6T-tv-Kzm"/>
+                            <constraint firstItem="6Fl-Oo-Fq3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="28N-z8-DnB"/>
+                            <constraint firstItem="6Fl-Oo-Fq3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.5" id="RBz-zk-hdJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="28N-z8-DnB"/>
+                                <exclude reference="RBz-zk-hdJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="28N-z8-DnB"/>
+                                <include reference="RBz-zk-hdJ"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="82.5" y="353"/>
         </scene>
     </scenes>
 </document>
