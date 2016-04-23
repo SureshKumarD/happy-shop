@@ -17,18 +17,17 @@ class NetworkManager: NSObject {
     class func getFromServer(urlString : String, params: [String : String], success: (JSON)-> Void, failure :( NSError)->Void) {
         
         //Uses RESTful approach, ie., BaseUrl + Url fragment...
-        
         let manager = AFHTTPSessionManager(baseURL: NSURL(string:URL_BASE))
         manager.requestSerializer = AFJSONRequestSerializer()
         manager.responseSerializer = AFJSONResponseSerializer()
-        
+    
         //Setting Possible Acceptable Content Types
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/plain","application/json", "text/json", "text/javascript", "text/html","text/xml"]) as? Set<String>
         
+        /*
         // Add common parameters, along with the existing parameters...
-//        let composedParams = NetworkManager.addCommonParameter(params)
-        
-        
+        let composedParams = NetworkManager.addCommonParameter(params)
+        */
         manager.GET(urlString, parameters: params , progress: nil, success: {
             (task: NSURLSessionDataTask!, responseObject: AnyObject?) in
             
@@ -56,15 +55,17 @@ class NetworkManager: NSObject {
         
     }
     
-//    class func addCommonParameter(params:[String : String])-> [String : String] {
-//        var composedDictionary = params
-//        // If the API_KEY is provided, interpolated the existing dictionary,
-//        // with the new atom appid-api_key...
-//        if(!(API_KEY.isEmpty)) {
-//            composedDictionary["appid"] = API_KEY
-//        }
-//        return composedDictionary
+    /*
+    class func addCommonParameter(params:[String : String])-> [String : String] {
+        var composedDictionary = params
+        // If the API_KEY is provided, interpolated the existing dictionary,
+        // with the new atom appid-api_key...
+        if(!(API_KEY.isEmpty)) {
+            composedDictionary["appid"] = API_KEY
+        }
+        return composedDictionary
         
-//    }
+    }
+    */
 
 }

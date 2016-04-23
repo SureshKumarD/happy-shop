@@ -8,6 +8,9 @@
         <mutableArray key="HelveticaNeue-Bold.ttf">
             <string>HelveticaNeue-Bold</string>
         </mutableArray>
+        <mutableArray key="HelveticaNeue-Medium.ttf">
+            <string>HelveticaNeue-Medium</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>

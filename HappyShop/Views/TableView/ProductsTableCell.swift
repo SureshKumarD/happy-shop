@@ -24,6 +24,7 @@ class ProductsTableCell: UITableViewCell {
         self.containerView.layer.borderColor = UIColor.grayColor().CGColor
         self.containerView.backgroundColor = kWHITE_COLOR
         self.contentView.backgroundColor = kWHITE_COLOR
+        self.productNameLabel.sizeToFit()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

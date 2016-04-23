@@ -27,23 +27,34 @@ class DataManager: NSObject {
     
     //To the cart...
     var selectedProductList : JSON = [:]
+    
+    //MARK:- Shared Instance
+    class func sharedDataManager()-> DataManager! {
+        //Returns the static, singleton instance...
+        return dataManager
+    }
 
+    //MARK:- Init
     override init() {
         
         self.currentPage = 0
         self.isRequiredLoadNextPage = false
         
-       
+        //Get the available saved items from the DB.
+        //Returns a tuple(multiple objects i.,e valueString, managedObject).
+        //It's required to valueString only, so, unwrap and store it in singleton object.
         let jsonString = KeyValueDataBaseManager.objectStringForKey(kCART_ITEMS_KEY)
-        if((jsonString?.isEmpty) == false) {
-            let jsonObject = DataManager.convertStringToDictionary(jsonString!)! as JSON
+        if((jsonString.valueString?.isEmpty) == false) {
+            let jsonObject = DataManager.convertStringToDictionary(jsonString.valueString!)! as JSON
             self.selectedProductList = jsonObject
         }
         super.init()
         
     }
     
+    //MARK:- METHODS
     
+    //Convert the string into JSON object...
     class func convertStringToDictionary(jsonString: String) -> JSON? {
         if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
@@ -53,10 +64,18 @@ class DataManager: NSObject {
     }
     
     
-    class func sharedDataManager()-> DataManager! {
-        //Returns the static, singleton instance...
-        return dataManager
+    //MARK:- Gradient BackGround Color
+    func setGradientBackgroundColor(view : UIView!) {
+        
+        
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [kSNOW_COLOR.CGColor, kWHITE_COLOR.CGColor, kSNOW_COLOR.CGColor]
+        view.layer.insertSublayer(gradient, atIndex: 0)
+        
+        
     }
+
     
     
     //MARK: - Acitivity Indicator - usage

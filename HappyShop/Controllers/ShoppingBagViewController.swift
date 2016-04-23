@@ -10,12 +10,13 @@ import UIKit
 import SwiftyJSON
 
 let kCELL_HEIGHT_DEFAULT = 170 as CGFloat
-let kCELL_HEIGHT_NO_ITEM = 170 as CGFloat
+let kCELL_HEIGHT_NO_ITEM = 60 as CGFloat
 
 let kHEADER_HEIGHT = 44 as CGFloat
 
 class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, SelectedItemDelegate {
 
+    @IBOutlet weak var headerContainerView: UIView!
     
     //Interface Outlets
     
@@ -63,6 +64,11 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         self.itemsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.itemsTableView.allowsSelection = false
         self.itemsTableView.backgroundColor = kWHITE_COLOR
+        self.headerContainerView.layer.masksToBounds = true
+        self.headerContainerView.layer.cornerRadius = 5.0
+        self.headerContainerView.layer.borderColor = kGRAY_COLOR.CGColor
+        self.headerContainerView.layer.borderWidth = 0.5
+        
         self.initializeTableHeaderView()
         self.loadShoppedItemsArray()
         
@@ -83,12 +89,15 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         self.headerView.addSubview(borderLabel)
         
     }
+    override func didFinishLayout() {
+        DataManager.sharedDataManager().setGradientBackgroundColor(self.headerContainerView)
+    }
     
     func loadShoppedItemsArray() {
         self.shoppedItems = []
         let shoppingBagItems = DataManager.sharedDataManager().selectedProductList
         var totalAmount : Double = 0.0
-        for (key, subJson) in shoppingBagItems {
+        for (_, subJson) in shoppingBagItems {
             totalAmount += subJson["product"]["price"].doubleValue
             self.shoppedItems.append(subJson)
             
@@ -115,41 +124,35 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        //TODO:- Returns 'no items in your bag' messaged cell,
+        //If the 'shoppedItems' array count is 0
         if(self.shoppedItems.count == NUMBER_ZERO) {
             let cell = tableView.dequeueReusableCellWithIdentifier("NoItemsCell")
             return cell!
         }
         
+        //Else the 'ShoppedItems' array count is > 0
+        //Returns data populated 'ShoppedItemCell'
         var cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
         
         if cell == nil {
             tableView.registerNib(UINib(nibName: "ShoppedItemCell", bundle: nil), forCellReuseIdentifier: "ShoppedItemCell")
             cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
+            cell?.productNameLabel.sizeToFit()
         }
+        
+        //JSON object unwrapped from array...
         let productObject = self.shoppedItems[indexPath.row]
-        let url  = NSURL(string:  productObject["product"]["img_url"].stringValue)
         
-        //Product Image
-        cell?.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        //Configure cell's subviews data...
+        self.configureShoppingBagTableView(&cell!, productObject: productObject, index: indexPath.row)
         
-        //Product Name
-        cell?.productNameLabel.text = productObject["product"]["name"].stringValue
-        
-        //Product Price
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["product"]["price"].stringValue) as NSInteger!))!
-        cell?.productPriceLabel.text =  tempString
-        
-        //Setting button's tag as index
-        cell?.productRemoveButton.tag = indexPath.row
-        
-        //Setting delegate to get remove items.
-        cell?.removeItemDelegate = self
+        //Return the data populated cell...
         return cell!
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var itemsCount = self.shoppedItems.count
+        let itemsCount = self.shoppedItems.count
         if itemsCount == NUMBER_ZERO {
            return kCELL_HEIGHT_NO_ITEM
         }
@@ -188,6 +191,28 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         cell.addSubview(separatorView)
     }
 
+    func configureShoppingBagTableView(inout cell : ShoppedItemCell, productObject : JSON , index : Int) {
+        let url  = NSURL(string:  productObject["product"]["img_url"].stringValue)
+        
+        //Product Image
+        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        
+        //Product Name
+        cell.productNameLabel.text = productObject["product"]["name"].stringValue
+        cell.productNameLabel.sizeToFit()
+        
+        //Product Price
+        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["product"]["price"].stringValue) as NSInteger!))!
+        cell.productPriceLabel.text =  tempString
+        
+        //Setting button's tag as index
+        cell.productRemoveButton.tag = index
+        
+        //Setting delegate to get remove items.
+        cell.removeItemDelegate = self
+        
+
+    }
 
     //MARK:- Selected Item Delegate
     func removeItemAtIndex(index: Int) {
@@ -202,23 +227,22 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     
     //Save items in shopping bag...
     func saveShoppingItems() {
-        if let cartItems = DataManager.sharedDataManager().selectedProductList.rawString() {
-            print("Success : cart items" + "\(cartItems)")
-            KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
-            self.loadShoppedItemsArray()
-            self.itemsTableView.reloadData()
-//            do {
-//                
-//                
-//                
-//            } catch let error as NSError {
-//                print("error in unwrapping cartitems " + error.localizedDescription)
-//            }
-            
+        
+        var cartItems = DataManager.sharedDataManager().selectedProductList.rawString()
+        print("Success : cart items" + "\(cartItems)")
+        
+        if (DataManager.sharedDataManager().selectedProductList.isEmpty == true ) {
+        
+            cartItems = nil
         }
+        //Save the updated object string in database...
+        KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
+        
+        //Load the itemsarray with updated value
+        self.loadShoppedItemsArray()
+        
+        //Reload the tableview...
+        self.itemsTableView.reloadData()
         
     }
-
-
-   
 }

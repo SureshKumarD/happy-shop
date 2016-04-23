@@ -55,30 +55,16 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         if cell == nil {
             tableView.registerNib(UINib(nibName: "ProductsTableCell", bundle: nil), forCellReuseIdentifier: "ProductsTableCell")
             cell = tableView.dequeueReusableCellWithIdentifier("ProductsTableCell") as? ProductsTableCell
+            cell?.productNameLabel.sizeToFit()
         }
+        
+        //JSON object unwrapped from array...
         let productObject = self.productsArray[indexPath.row]
         
-        let url  = NSURL(string:  productObject["img_url"].stringValue)
+        //Configure cell object's data...
+        self.configureProductsCell(&cell!, productObject: productObject)
         
-        //Product Image
-        cell?.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
-        
-        //Product Name
-        cell?.productNameLabel.text = productObject["name"].stringValue
-        
-        //Product Price
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["price"].stringValue) as NSInteger!))!
-        cell?.productPriceLabel.text =  tempString
-        
-        if(productObject["under_sale"].stringValue == "true") {
-            cell?.productAvailabilityLabel.text = "Available"
-            cell?.productAvailabilityLabel.textColor = kGREEN_COLOR
-            
-        }else {
-            cell?.productAvailabilityLabel.text = "Unavailable"
-            cell?.productAvailabilityLabel.textColor = kRED_COLOR
-        }
-
+        //Return the data populated cell...
         return cell!
 
     }
@@ -103,7 +89,7 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         }
         
         // Draw cell border of height 1px.
-        let borderFrame : CGRect = CGRect(x: 0, y: cell.frame.size.height - 1, width: cell.frame.size.width, height: 1)
+        let borderFrame : CGRect = CGRect(x: 0, y: cell.frame.size.height - 0.5, width: cell.frame.size.width, height: 0.5)
         let separatorView = UIView(frame:borderFrame)
         separatorView.backgroundColor = kGRAY_COLOR2
         cell .addSubview(separatorView)
@@ -116,6 +102,32 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         self.productDelegate.productSelected(object)
     }
     
+    
+    //Cell Customization...
+    func configureProductsCell(inout cell : ProductsTableCell , productObject : JSON ) {
+        
+        let url  = NSURL(string:  productObject["img_url"].stringValue)
+        
+        //Product Image
+        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        
+        //Product Name
+        cell.productNameLabel.text = productObject["name"].stringValue
+        
+        //Product Price
+        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["price"].stringValue) as NSInteger!))!
+        cell.productPriceLabel.text =  tempString
+        
+        if(productObject["under_sale"].stringValue == "true") {
+            cell.productAvailabilityLabel.text = "Available"
+            cell.productAvailabilityLabel.textColor = kGREEN_COLOR
+            
+        }else {
+            cell.productAvailabilityLabel.text = "Unavailable"
+            cell.productAvailabilityLabel.textColor = kRED_COLOR
+        }
+
+    }
     
     //MARK: - SUPERCLASS's method overriden
     override  func reloadTableOrCollectionView(objects: [AnyObject]!) {

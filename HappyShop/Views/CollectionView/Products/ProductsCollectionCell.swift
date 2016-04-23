@@ -23,7 +23,9 @@ class ProductsCollectionCell: UICollectionViewCell {
 ////        self.layer.borderColor = kPINK_COLOR.CGColor
 //        self.contentView.backgroundColor = kWHITE_COLOR
         //        self.setGradientBackgroundColor( self.categoryContainerView)
+        self.productNameLabel.sizeToFit()
         self.backgroundColor = kWHITE_COLOR;
+        
     }
 
    

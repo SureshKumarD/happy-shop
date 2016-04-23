@@ -46,6 +46,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         //Set navigation title...
         let titleString = DataManager.sharedDataManager().selectedProductCategory as String!
         self.setNavigationTitle(titleString)
+        self.navigationController?.hidesBarsOnSwipe = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -140,11 +141,14 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         self.navigationRightButton.frame = CGRectMake(0, 0, 50, 50)
         self.navigationRightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
         self.navigationRightButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
-        self.navigationRightButton.tintColor = kBLACK_COLOR
+        self.navigationRightButton.tintColor = kWHITE_COLOR
         
         self.navigationRightButton.imageView?.contentMode = UIViewContentMode.Center
         self.navigationRightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
         self.setTopRightButton(self.navigationRightButton)
+        
+        //Disable user interaction untill get teh products info from server...
+        self.navigationRightButton.userInteractionEnabled = false
         
     }
     
@@ -167,7 +171,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
             
         case ProductListingOptions.List?:
             self.productListingOption = ProductListingOptions.Grid
-            image = UIImage(named: "gridIcon")
+            image = UIImage(named: "gridIcon2")
             self.changeViewOptionToGrid()
             break
             
@@ -180,7 +184,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         let newImage =   image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
         
         self.navigationRightButton.setImage(newImage, forState: .Normal)
-        self.navigationRightButton.tintColor = kBLACK_COLOR
+        self.navigationRightButton.tintColor = kWHITE_COLOR
         
     }
 
@@ -246,6 +250,10 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
     //MARK:- Populate Data On UI
     func populateDataOnUI(jsonData: JSON!) {
+        
+        //Enable right button user interaction, since response received...
+        self.navigationRightButton.userInteractionEnabled = true
+        
         self.productsCollectionView.backgroundColor = kGRAY_COLOR2
         self.productsCollectionView.productsArray = jsonData["products"].arrayValue 
         self.productsCollectionView.reloadData()
@@ -278,7 +286,6 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         
     }
 
-    
 
 
 }

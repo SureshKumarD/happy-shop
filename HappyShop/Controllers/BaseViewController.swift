@@ -24,16 +24,19 @@ class BaseViewController: UIViewController {
         //Initiate the Network Monitoring...
         AFNetworkReachabilityManager.sharedManager().startMonitoring();
         
-        
         self.defaultStylingAndProperties()
+        self.setNavigationBarTintColor(kBLUE_COLOR)
+        
         //Set View's gradient background color
-        self.setGradientBackgroundColor(self.view);
+        DataManager.sharedDataManager().setGradientBackgroundColor(self.view);
         
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -48,8 +51,12 @@ class BaseViewController: UIViewController {
         
         //Remove reachability obser for the current class...
         self.removeReachabilityObserver()
+        
+        //Hide activity indicator if exists...
+        DataManager.sharedDataManager().stopActivityIndicator()
 
     }
+    
     
     //MARK:- METHODS
     func defaultStylingAndProperties() {
@@ -69,11 +76,14 @@ class BaseViewController: UIViewController {
     }
     
     func setNavigationBarColor(color : UIColor) {
-        self.navigationController?.navigationBar.barTintColor = color
+        
+        self.navigationController?.navigationBar.tintColor = color
     }
     
     func setNavigationBarTintColor(color : UIColor) {
-        self.navigationController?.navigationBar.tintColor = color
+        self.navigationController?.navigationBar.barTintColor = color
+        self.navigationController?.navigationBar.translucent = false
+        
     }
     
     //BackButton...
@@ -94,7 +104,7 @@ class BaseViewController: UIViewController {
         let newImage = image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
     
         self.navigationLeftButton.setImage(newImage, forState: .Normal)
-        self.navigationLeftButton.tintColor = kBLACK_COLOR
+        self.navigationLeftButton.tintColor = kWHITE_COLOR
     
     
         self.navigationLeftButton.imageView?.contentMode = UIViewContentMode.Center
@@ -146,16 +156,6 @@ class BaseViewController: UIViewController {
         }
     }
     
-    //MARK:- Set Background Color
-    func setGradientBackgroundColor(view : UIView!) {
-        
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [kSNOW_COLOR.CGColor, kWHITE_COLOR.CGColor, kSNOW_COLOR.CGColor]
-        view.layer.insertSublayer(gradient, atIndex: 0)
-        
-    }
-    
     
     //MARK:- After DidLayout Actions
     override func viewDidLayoutSubviews() {
@@ -167,13 +167,21 @@ class BaseViewController: UIViewController {
     //When all subviews finish layout...
     func didFinishLayout() {
         
-        
+        //Does nothing, as this method will be overriden in the subclasses, if it is required.
     }
     
-    //MARK:- Set navigationbar font
+    //MARK:- Navigationbar Settings
     func setNavigationBarSettings() {
+        
+        //TODO:- Set Navigation Default Settings, Once.
         dispatch_once(&dispatchToken) { () -> Void in
-            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 15)!, NSForegroundColorAttributeName : kBLACK_COLOR]
+            
+            //Set Navigation item titleview's title text attributes, globally.
+            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 16)!, NSForegroundColorAttributeName : kWHITE_COLOR]
+            
+            //Changes the status bar text color to white, globally...
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+           
             
         }
         

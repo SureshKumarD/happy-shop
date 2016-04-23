@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        self.setStatusBarBackgroundColor(kBLUE_COLOR)
         return true
     }
 
@@ -106,6 +106,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    //MARK: - Navigation
+    func setStatusBarBackgroundColor(color: UIColor) {
+        
+        guard  let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView else {
+            return
+        }
+        
+        statusBar.backgroundColor = color
+    }
+
 
 
    

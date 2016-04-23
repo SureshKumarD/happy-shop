@@ -47,31 +47,15 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
     }
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionCell", forIndexPath: indexPath) as! ProductsCollectionCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ProductsCollectionCell", forIndexPath: indexPath) as! ProductsCollectionCell
         
+        //JSON object unwrapped from array...
         let productObject = self.productsArray[indexPath.row]
         
-        let url  = NSURL(string:  productObject["img_url"].stringValue)
-
-        //Product Image
-        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        //Configure cell's subviews data...
+        self.configureProductsCollection(&cell, productObject: productObject)
         
-        //Product Name
-        cell.productNameLabel.text = productObject["name"].stringValue
-
-        //Product Price
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["price"].stringValue) as NSInteger!))!
-        cell.productPriceLabel.text =  tempString
-        
-        if(productObject["under_sale"].stringValue == "true") {
-            cell.productAvailabilityLabel.text = "Available"
-            cell.productAvailabilityLabel.textColor = kGREEN_COLOR
-            
-        }else {
-            cell.productAvailabilityLabel.text = "Unavailable"
-            cell.productAvailabilityLabel.textColor = kRED_COLOR
-        }
-
+        //Return the data populated cell...
         return cell
     }
     
@@ -91,6 +75,33 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let object = self.productsArray[indexPath.row]
         self.productDelegate.productSelected(object)
+    }
+    
+    
+    
+    //Cell Cutomizations...
+    func configureProductsCollection(inout cell : ProductsCollectionCell, productObject : JSON) {
+        let url  = NSURL(string:  productObject["img_url"].stringValue)
+        
+        //Product Image
+        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        
+        //Product Name
+        cell.productNameLabel.text = productObject["name"].stringValue
+        
+        //Product Price
+        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["price"].stringValue) as NSInteger!))!
+        cell.productPriceLabel.text =  tempString
+        
+        if(productObject["under_sale"].stringValue == "true") {
+            cell.productAvailabilityLabel.text = "Available"
+            cell.productAvailabilityLabel.textColor = kGREEN_COLOR
+            
+        }else {
+            cell.productAvailabilityLabel.text = "Unavailable"
+            cell.productAvailabilityLabel.textColor = kRED_COLOR
+        }
+
     }
     
     //MARK: - SUPERCLASS's method overriden

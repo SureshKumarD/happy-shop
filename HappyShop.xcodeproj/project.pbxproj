@@ -44,6 +44,10 @@
 		F9DEAE5D1CC6962F0074396C /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DEAE5C1CC6962F0074396C /* ProductViewController.swift */; };
 		F9EA98431CC5443700969B6B /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA98421CC5443700969B6B /* ProductsViewController.swift */; };
 		F9EA98451CC55CA000969B6B /* UIScrollView+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EA98441CC55CA000969B6B /* UIScrollView+Custom.swift */; };
+		F9F0AE001CCAF0FF008BD59E /* shopBag.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0ADFF1CCAF0FF008BD59E /* shopBag.png */; };
+		F9F0AE021CCAF272008BD59E /* Buy-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0AE011CCAF272008BD59E /* Buy-icon.png */; };
+		F9F0AE041CCAF366008BD59E /* icon_shop.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0AE031CCAF366008BD59E /* icon_shop.png */; };
+		F9F0AE061CCB7F20008BD59E /* gridIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = F9F0AE051CCB7F20008BD59E /* gridIcon2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +113,10 @@
 		F9DEAE5C1CC6962F0074396C /* ProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		F9EA98421CC5443700969B6B /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		F9EA98441CC55CA000969B6B /* UIScrollView+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Custom.swift"; sourceTree = "<group>"; };
+		F9F0ADFF1CCAF0FF008BD59E /* shopBag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shopBag.png; sourceTree = "<group>"; };
+		F9F0AE011CCAF272008BD59E /* Buy-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Buy-icon.png"; sourceTree = "<group>"; };
+		F9F0AE031CCAF366008BD59E /* icon_shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_shop.png; sourceTree = "<group>"; };
+		F9F0AE051CCB7F20008BD59E /* gridIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridIcon2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +280,10 @@
 				F92B1C521CC80093008251B3 /* listIcon.png */,
 				F92B1C531CC80093008251B3 /* gridIcon.png */,
 				F901514E1CC92813002A6118 /* bag.png */,
+				F9F0ADFF1CCAF0FF008BD59E /* shopBag.png */,
+				F9F0AE031CCAF366008BD59E /* icon_shop.png */,
+				F9F0AE011CCAF272008BD59E /* Buy-icon.png */,
+				F9F0AE051CCB7F20008BD59E /* gridIcon2.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -433,12 +445,16 @@
 			files = (
 				F901514F1CC92813002A6118 /* bag.png in Resources */,
 				F917FD1A1CCA9C76002147C2 /* ShoppedItemCell.xib in Resources */,
+				F9F0AE041CCAF366008BD59E /* icon_shop.png in Resources */,
+				F9F0AE021CCAF272008BD59E /* Buy-icon.png in Resources */,
 				F98473CC1CC419AB00379B39 /* Info.plist in Resources */,
+				F9F0AE061CCB7F20008BD59E /* gridIcon2.png in Resources */,
 				F9CE3FA21CC8099300751B0C /* ProductsTableCell.xib in Resources */,
 				F98473C81CC418B400379B39 /* Main.storyboard in Resources */,
 				F92B1C561CC80093008251B3 /* gridIcon.png in Resources */,
 				F98473C61CC418B400379B39 /* Assets.xcassets in Resources */,
 				F90151591CC94A4C002A6118 /* CategoriesCollectionCell.xib in Resources */,
+				F9F0AE001CCAF0FF008BD59E /* shopBag.png in Resources */,
 				F92B1C551CC80093008251B3 /* listIcon.png in Resources */,
 				F98473C71CC418B400379B39 /* LaunchScreen.storyboard in Resources */,
 				F97E619C1CC785AC004488F1 /* placeholder.png in Resources */,

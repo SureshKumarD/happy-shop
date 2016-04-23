@@ -40,10 +40,11 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.categoriesArray.count
     }
+    
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CategoriesCollectionCell", forIndexPath: indexPath) as! CategoriesCollectionCell
-        
+//        DataManager.sharedDataManager().setGradientBackgroundColor(&cell)
         let category = self.categoriesArray[indexPath.row]
         cell.categoryNameLabel.text = category as? String
         

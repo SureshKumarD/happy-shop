@@ -18,8 +18,9 @@ class CategoriesCollectionCell: UICollectionViewCell {
         self.layer.borderColor = kGRAY_COLOR2.CGColor
         self.layer.borderWidth = 0.5
         self.contentView.backgroundColor = UIColor.clearColor()
-        self.backgroundColor = kCLEAR_COLOR;
+//        self.backgroundColor = kCLEAR_COLOR;
         
+        DataManager.sharedDataManager().setGradientBackgroundColor(self)
     }
     
     //MARK:- Set Background Color
