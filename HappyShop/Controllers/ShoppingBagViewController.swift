@@ -25,10 +25,11 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var itemsTableView: UITableView!
     
+    //Store saved items to display the summary...
+    private var shoppedItems : [JSON] = [ ]
     
-    var shoppedItems : [JSON] = [ ]
-    
-    var headerView : UIView!
+    //Header view to be passed in the tableview's header
+    private var headerView : UIView!
     
     //Number Formatter - (comma , )separated numbers...
     let numberFormatter = NSNumberFormatter()
@@ -56,7 +57,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     
     //MARK:- METHODS
     
-    func initializations() {
+    private func initializations() {
         self.scrollView.delegate = self
         self.itemsTableView.delegate = self
         self.itemsTableView.dataSource = self
@@ -74,7 +75,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
     }
     
-    func initializeTableHeaderView() {
+    private func initializeTableHeaderView() {
         self.headerView = UIView(frame: CGRect(x: 0, y: 0, width: WIDTH_WINDOW_FRAME, height: 44))
         let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: WIDTH_WINDOW_FRAME - 30, height: 43))
         headerLabel.textColor = kBLACK_COLOR
@@ -93,7 +94,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         DataManager.sharedDataManager().setGradientBackgroundColor(self.headerContainerView)
     }
     
-    func loadShoppedItemsArray() {
+    private func loadShoppedItemsArray() {
         self.shoppedItems = []
         let shoppingBagItems = DataManager.sharedDataManager().selectedProductList
         var totalAmount : Double = 0.0
@@ -191,7 +192,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         cell.addSubview(separatorView)
     }
 
-    func configureShoppingBagTableView(inout cell : ShoppedItemCell, productObject : JSON , index : Int) {
+    private func configureShoppingBagTableView(inout cell : ShoppedItemCell, productObject : JSON , index : Int) {
         let url  = NSURL(string:  productObject["product"]["img_url"].stringValue)
         
         //Product Image
@@ -226,7 +227,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     }
     
     //Save items in shopping bag...
-    func saveShoppingItems() {
+    private func saveShoppingItems() {
         
         var cartItems = DataManager.sharedDataManager().selectedProductList.rawString()
         print("Success : cart items" + "\(cartItems)")

@@ -21,18 +21,18 @@ class ProductViewController: BaseViewController {
     //Selected Product...
     var particularProductJSON : JSON!
     
-    var particularProductDetail : JSON!
+    private var particularProductDetail : JSON!
     
     //Number Formatter - (comma , )separated numbers...
-    let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NSNumberFormatter()
     
     // Token to dispatch once...
-    var dispatchToken2 : dispatch_once_t = 0
+    private var dispatchToken2 : dispatch_once_t = 0
 
     //Navigation Items...
    
-    var rightButton : UIButton!
-    var rightButtonBadgeLabel : UILabel!
+    private var rightButton : UIButton!
+    private var rightButtonBadgeLabel : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +94,7 @@ class ProductViewController: BaseViewController {
     }
     
     //Update cart badge label count...
-    func updateCartBadgeLabel() {
+    private func updateCartBadgeLabel() {
         let cartItems = DataManager.sharedDataManager().selectedProductList
         let cartItemsCount = cartItems.count
         self.rightButtonBadgeLabel.text = String(cartItemsCount) as String!
@@ -102,7 +102,7 @@ class ProductViewController: BaseViewController {
     }
     
     //Save items in shopping bag...
-    func saveShoppingItems() {
+    private func saveShoppingItems() {
         if let cartItems = DataManager.sharedDataManager().selectedProductList.rawString() {
             KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
         }
@@ -110,7 +110,7 @@ class ProductViewController: BaseViewController {
     }
     
     //MARK:- Initialization or Allocations of objects
-    func initializations() {
+    private func initializations() {
         self.numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         self.productImageView.backgroundColor = kWHITE_COLOR
         self.productImageView.layer.masksToBounds = true
@@ -121,19 +121,14 @@ class ProductViewController: BaseViewController {
         self.productDescriptionLabel.sizeToFit()
         //Hide Add to cart button...
         self.addToCartButton.hidden = true
-        
-        //Avoid self.view goes underneath navigationbar
-//        self.navigationController?.navigationBar.translucent = false
-        
+    
         //Navigation Bar
-        self.leftBarButtonItem = UIBarButtonItem()
-        self.rightBarButtonItem = UIBarButtonItem()
         self.navigationBarDefaultSettings()
         
     }
     
     //Do Navigation bar initial settings...
-    func  navigationBarDefaultSettings() {
+    private func navigationBarDefaultSettings() {
         
         self.setNavigationRightButton()
         self.navigationController?.navigationBar.translucent = false
@@ -142,20 +137,18 @@ class ProductViewController: BaseViewController {
     
     //MARK:- NavigationBar
     //Right Button...
-    func setNavigationRightButton() {
-        if(self.navigationRightButton == nil) {
-            self.navigationRightButton = UIButton(type: UIButtonType.System)
+    private func setNavigationRightButton() {
+        if(self.rightButton == nil) {
+            self.rightButton = UIButton(type: UIButtonType.System)
         }
-        self.navigationRightButton.frame = CGRectMake(20, 0, 50, 50)
-        self.navigationRightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
-//        self.navigationRightButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
+        self.rightButton.frame = CGRectMake(20, 0, 50, 50)
+        self.rightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
         let image = UIImage(named: "icon_shop")
         let newImage = image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
-        
-        self.navigationRightButton.setImage(newImage, forState: .Normal)
-        self.navigationRightButton.tintColor = kWHITE_COLOR
-        self.navigationRightButton.imageView?.contentMode = UIViewContentMode.Center
-        self.navigationRightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.rightButton.setImage(newImage, forState: .Normal)
+        self.rightButton.tintColor = kWHITE_COLOR
+        self.rightButton.imageView?.contentMode = UIViewContentMode.Center
+        self.rightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
         
         if(self.rightButtonBadgeLabel == nil) {
             self.rightButtonBadgeLabel = UILabel(frame: CGRect(x: 30, y: 25, width: 20, height: 20))
@@ -167,8 +160,8 @@ class ProductViewController: BaseViewController {
         self.rightButtonBadgeLabel.font = UIFont(name: "HelveticaNeue", size: 10)!
         self.rightButtonBadgeLabel.minimumScaleFactor = 0.5
         self.rightButtonBadgeLabel.textAlignment = NSTextAlignment.Center
-        self.navigationRightButton.addSubview(self.rightButtonBadgeLabel)
-        self.setTopRightButton(self.navigationRightButton)
+        self.rightButton.addSubview(self.rightButtonBadgeLabel)
+        self.setTopRightButton(self.rightButton)
         
     }
 
@@ -206,13 +199,13 @@ class ProductViewController: BaseViewController {
     }
 
     //MARK:- Alert local
-    func showAlertView(title: String!, message : String!) {
+    private func showAlertView(title: String!, message : String!) {
         let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: nil)
         alertView.show()
         alertView.closAlertAfterDelay(3.0)
     }
 
-    func populateDataOnUI(jsonData : JSON) {
+    private func populateDataOnUI(jsonData : JSON) {
         
         self.particularProductDetail = jsonData
         

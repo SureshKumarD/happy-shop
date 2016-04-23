@@ -14,7 +14,7 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
     public var categoriesArray : [AnyObject] = DataManager.sharedDataManager().categoriesArray
     
     //Number Formatter - (comma , )separated numbers...
-    let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NSNumberFormatter()
     
     //Delegate to pass data
     var categoryDelegate : CategoryDelegate!

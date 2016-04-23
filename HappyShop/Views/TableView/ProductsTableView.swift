@@ -19,7 +19,7 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
     var productDelegate : ProductDelegate!
     
     //Number Formatter - (comma , )separated numbers...
-    let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NSNumberFormatter()
     
     
     override init(frame: CGRect, style: UITableViewStyle) {
@@ -104,7 +104,7 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
     
     
     //Cell Customization...
-    func configureProductsCell(inout cell : ProductsTableCell , productObject : JSON ) {
+    private func configureProductsCell(inout cell : ProductsTableCell , productObject : JSON ) {
         
         let url  = NSURL(string:  productObject["img_url"].stringValue)
         
@@ -130,7 +130,7 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
     }
     
     //MARK: - SUPERCLASS's method overriden
-    override  func reloadTableOrCollectionView(objects: [AnyObject]!) {
+    override func reloadTableOrCollectionView(objects: [AnyObject]!) {
         let jsonObjects = JSON(objects).arrayValue
         self.productsArray += jsonObjects
         self.reloadData()

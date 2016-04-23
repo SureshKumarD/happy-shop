@@ -18,7 +18,7 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
     var productDelegate : ProductDelegate!
     
     //Number Formatter - (comma , )separated numbers...
-    let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NSNumberFormatter()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -80,7 +80,7 @@ public class ProductsCollectionView: UICollectionView, UICollectionViewDataSourc
     
     
     //Cell Cutomizations...
-    func configureProductsCollection(inout cell : ProductsCollectionCell, productObject : JSON) {
+    private func configureProductsCollection(inout cell : ProductsCollectionCell, productObject : JSON) {
         let url  = NSURL(string:  productObject["img_url"].stringValue)
         
         //Product Image

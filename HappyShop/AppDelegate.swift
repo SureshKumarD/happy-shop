@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     //MARK: - Navigation Status Bar Color
-    func setStatusBarBackgroundColor(color: UIColor) {
+    private func setStatusBarBackgroundColor(color: UIColor) {
         
         guard  let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView else {
             return

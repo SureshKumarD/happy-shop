@@ -11,13 +11,13 @@ import UIKit
 class BaseViewController: UIViewController {
     
     // Token to dispatch once...
-    var dispatchToken : dispatch_once_t = 0
+    private var dispatchToken : dispatch_once_t = 0
     
     //Navigation Items...
-    var leftBarButtonItem : UIBarButtonItem!
-    var rightBarButtonItem : UIBarButtonItem!
-    var navigationLeftButton : UIButton!
-    var navigationRightButton : UIButton!
+    private var leftBarButtonItem : UIBarButtonItem!
+    private var rightBarButtonItem : UIBarButtonItem!
+    private var navigationLeftButton : UIButton!
+    private var navigationRightButton : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class BaseViewController: UIViewController {
     
     
     //MARK:- METHODS
-    func defaultStylingAndProperties() {
+    private func defaultStylingAndProperties() {
         
         
         //Navigation - right, left barbuttonitem allocation.
@@ -87,7 +87,7 @@ class BaseViewController: UIViewController {
     }
     
     //BackButton...
-    func setNavigationBackButton() {
+    private func setNavigationBackButton() {
         let viewControllers = (self.navigationController?.viewControllers)! as NSArray
         
         if(viewControllers.count == NUMBER_ONE) {
@@ -138,12 +138,12 @@ class BaseViewController: UIViewController {
     
     //MARK:- Reachability observer - notifier
     //Add Reachability Observer
-    func addreachabilityObserver() {
+    private func addreachabilityObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("networkChanged:"), name: AFNetworkingReachabilityDidChangeNotification, object: nil);
     }
     
     //Remove Rechability Observer
-    func removeReachabilityObserver() {
+    private func removeReachabilityObserver() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: AFNetworkingReachabilityDidChangeNotification, object: nil);
     }
     
@@ -171,7 +171,7 @@ class BaseViewController: UIViewController {
     }
     
     //MARK:- Navigationbar Settings
-    func setNavigationBarSettings() {
+    private func setNavigationBarSettings() {
         
         //TODO:- Set Navigation Default Settings, Once.
         dispatch_once(&dispatchToken) { () -> Void in

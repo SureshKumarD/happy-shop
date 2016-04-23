@@ -15,7 +15,7 @@ extension UIAlertView  {
        
     }
     
-    func closeAlertView() {
+    public func closeAlertView() {
         self.dismissWithClickedButtonIndex(0, animated: true)
     }
 

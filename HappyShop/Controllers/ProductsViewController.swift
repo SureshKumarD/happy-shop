@@ -16,22 +16,21 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     @IBOutlet weak var containerView: UIView!
     
     //CollectionView...
-    var productsCollectionView : ProductsCollectionView!
-    var flowLayout : UICollectionViewFlowLayout!
+    private var productsCollectionView : ProductsCollectionView!
+    private var flowLayout : UICollectionViewFlowLayout!
     
     //Products Listing View Options
-    var productListingOption : ProductListingOptions!
+    private var productListingOption : ProductListingOptions!
     
     //Token for one time dispatch...
-    var token: dispatch_once_t = 0
+    private var token: dispatch_once_t = 0
     
     //TableView...
-    var productsTableView : ProductsTableView!
+    private var productsTableView : ProductsTableView!
     
     
     //Navigation Items...
-   
-    var rightButton : UIButton!
+    private var rightButton : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +66,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     //MARK:- METHODS
     
     
-    func initializations() {
+    private func initializations() {
         //Listing views...
         self.collectionViewDefaultSettings()
         self.tableViewDefaultSettings()
@@ -78,15 +77,12 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         //Default listing option...
         self.productListingOption = ProductListingOptions.List
         
-        //Navigation Bar
-        self.leftBarButtonItem = UIBarButtonItem()
-        self.rightBarButtonItem = UIBarButtonItem()
         self.navigationBarDefaultSettings()
         
     }
     
     //Do Navigation bar initial settings...
-    func  navigationBarDefaultSettings() {
+    private func navigationBarDefaultSettings() {
 
         self.setNavigationRightButton()
         self.navigationController?.navigationBar.translucent = false
@@ -94,7 +90,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     }
     
     //CollectionView initial settings...
-    func collectionViewDefaultSettings() {
+    private func collectionViewDefaultSettings() {
         //CollectionView...
         self.flowLayout  = UICollectionViewFlowLayout()
         self.flowLayout.minimumInteritemSpacing = 0.5
@@ -108,7 +104,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     }
     
     // TableView initial settings...
-    func tableViewDefaultSettings() {
+    private func tableViewDefaultSettings() {
         
         self.productsTableView = ProductsTableView(frame: self.containerView.bounds , style: UITableViewStyle.Plain)
         self.productsTableView.backgroundColor = kCLEAR_COLOR
@@ -117,16 +113,14 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         self.productsTableView.hidden = true
         
     }
-
-    
-    
     
     //Register CollectionView Nib
-    func registerAllNibs() {
+    private func registerAllNibs() {
         
         self.productsCollectionView.registerNib(UINib.init(nibName: "ProductsCollectionCell", bundle: nil), forCellWithReuseIdentifier:"ProductsCollectionCell")
         
     }
+    
     //Handler when view did finish layout...
     override func didFinishLayout() {
         self.productsCollectionView.frame = self.containerView.bounds
@@ -134,32 +128,34 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     }
     
     //Right Button...
-    func setNavigationRightButton() {
-        if(self.navigationRightButton == nil) {
-            self.navigationRightButton = UIButton(type: UIButtonType.System)
+    private func setNavigationRightButton() {
+        if(self.rightButton == nil) {
+            self.rightButton = UIButton(type: UIButtonType.System)
         }
-        self.navigationRightButton.frame = CGRectMake(0, 0, 50, 50)
-        self.navigationRightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
-        self.navigationRightButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
-        self.navigationRightButton.tintColor = kWHITE_COLOR
+        self.rightButton.frame = CGRectMake(0, 0, 50, 50)
+        self.rightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
+        self.rightButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
+        self.rightButton.tintColor = kWHITE_COLOR
         
-        self.navigationRightButton.imageView?.contentMode = UIViewContentMode.Center
-        self.navigationRightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.setTopRightButton(self.navigationRightButton)
+        self.rightButton.imageView?.contentMode = UIViewContentMode.Center
+        self.rightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.setTopRightButton(self.rightButton)
         
         //Disable user interaction untill get teh products info from server...
-        self.navigationRightButton.userInteractionEnabled = false
+        self.rightButton.userInteractionEnabled = false
         
     }
     
         
     //RightButtonTapped
-    func rightButtonTapped() {
+    private func rightButtonTapped() {
         self.changeProductListingView()
     }
+    
+    
     //MARK:- Navigation Bar Action
     //Right button action handler...
-    func changeProductListingView() {
+    private func changeProductListingView() {
         var image :UIImage!
         switch(self.productListingOption) {
             
@@ -183,14 +179,14 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
         let newImage =   image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
         
-        self.navigationRightButton.setImage(newImage, forState: .Normal)
-        self.navigationRightButton.tintColor = kWHITE_COLOR
+        self.rightButton.setImage(newImage, forState: .Normal)
+        self.rightButton.tintColor = kWHITE_COLOR
         
     }
 
     //MARK:- Change view option
     //To Grid View
-    func changeViewOptionToGrid() {
+    private func changeViewOptionToGrid() {
         self.productsCollectionView.hidden = false
         self.productsTableView.hidden = true
         self.flowLayout.minimumInteritemSpacing = 0.5
@@ -200,7 +196,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     }
     
     //To List View
-    func changeViewOptionToList() {
+    private func changeViewOptionToList() {
         self.productsCollectionView.hidden = true
         self.productsTableView.hidden = false
         self.productsTableView.productsArray = self.productsCollectionView.productsArray
@@ -210,7 +206,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
 
     
     //MARK:- Fetch Products 
-    func getProductsFromServer() {
+    private func getProductsFromServer() {
         
         
         dispatch_once(&token) { () -> Void in
@@ -243,16 +239,16 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
     
     //MARK:- Alert local
-    func showAlertView(title: String!, message : String!) {
+    private func showAlertView(title: String!, message : String!) {
         let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK")
         alertView.show()
     }
     
     //MARK:- Populate Data On UI
-    func populateDataOnUI(jsonData: JSON!) {
+    private func populateDataOnUI(jsonData: JSON!) {
         
         //Enable right button user interaction, since response received...
-        self.navigationRightButton.userInteractionEnabled = true
+        self.rightButton.userInteractionEnabled = true
         
         self.productsCollectionView.backgroundColor = kGRAY_COLOR2
         self.productsCollectionView.productsArray = jsonData["products"].arrayValue 
@@ -270,13 +266,13 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     }
     
     //MARK:- Reset Pagination Vars
-    func resetPaginationVariables() {
+    private func resetPaginationVariables() {
         DataManager.sharedDataManager().currentPage = NUMBER_ONE
         DataManager.sharedDataManager().isRequiredLoadNextPage = false
     }
     
     //MARK: - Goto Product Particular Screen
-    func gotoProductParticularScreen(product:JSON) {
+    private func gotoProductParticularScreen(product:JSON) {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let productsVC = storyBoard.instantiateViewControllerWithIdentifier("ProductViewController") as! ProductViewController

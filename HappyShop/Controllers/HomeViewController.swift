@@ -13,8 +13,8 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     
     
     //CollectionView...
-    var categoriesCollectionView : CategoriesCollectionView!
-    var flowLayout : UICollectionViewFlowLayout!
+    private var categoriesCollectionView : CategoriesCollectionView!
+    private var flowLayout : UICollectionViewFlowLayout!
 
     
     
@@ -37,13 +37,13 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     //MARK:- METHODS
     
     
-    func initializations() {
+    private func initializations() {
         self.collectionViewDefaultSettings()
         self.registerAllNibs()
         
     }
     //CollectionView initial settings...
-    func collectionViewDefaultSettings() {
+    private func collectionViewDefaultSettings() {
         //CollectionView...
         self.flowLayout  = UICollectionViewFlowLayout()
         self.flowLayout.minimumInteritemSpacing = 0.5
@@ -57,7 +57,7 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     }
     
     //Register CollectionView Nib
-    func registerAllNibs() {
+    private func registerAllNibs() {
         
         self.categoriesCollectionView.registerNib(UINib.init(nibName: "CategoriesCollectionCell", bundle: nil), forCellWithReuseIdentifier:"CategoriesCollectionCell")
         
