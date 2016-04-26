@@ -103,6 +103,10 @@ class ProductViewController: BaseViewController {
     
     //Save items in shopping bag...
     private func saveShoppingItems() {
+        //Deliberately converting all the data in hand to string(json object string),
+        //To make the Coredata updation simple and faster.
+        //And the converted string will be replaced with the old string based on
+        //the key kCART_ITEMS_KEY.
         if let cartItems = DataManager.sharedDataManager().selectedProductList.rawString() {
             KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
         }

@@ -18,7 +18,7 @@ let VALUE = "mValue"
 
 class KeyValueDataBaseManager: NSObject {
 
-    //TODO:- Create / Update the entity 'KeyValueManager' with the given key-value.
+    //TODO:- Create or Update the entity 'KeyValueManager' with the given key-value.
     class func saveObject(key : String!, objectString : String!) {
         
         

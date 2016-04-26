@@ -236,7 +236,13 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
             cartItems = nil
         }
+        
         //Save the updated object string in database...
+        
+        //Deliberately converting all the data in hand to string(json object string),
+        //To make the Coredata updation simple and faster.
+        //And the converted string will be replaced with the old string based on
+        //the key kCART_ITEMS_KEY.
         KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
         
         //Load the itemsarray with updated value
