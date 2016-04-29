@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A7720425122B1872667D5F9B /* Pods_HappyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966277FAEE92D99705AF534F /* Pods_HappyShop.framework */; };
+		F970095C1CD38A4200D90235 /* QuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F970095A1CD38A4200D90235 /* QuantityCell.swift */; };
+		F970095D1CD38A4200D90235 /* QuantityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F970095B1CD38A4200D90235 /* QuantityCell.xib */; };
 		F984739E1CC416CE00379B39 /* HappyShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F984739D1CC416CE00379B39 /* HappyShopTests.swift */; };
 		F98473A91CC416CE00379B39 /* HappyShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98473A81CC416CE00379B39 /* HappyShopUITests.swift */; };
 		F9F0AE081CCBFF22008BD59E /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F0AE071CCBFF22008BD59E /* DataManagerTests.swift */; };
@@ -69,6 +71,8 @@
 		38699FE29B4755F38C522088 /* Pods-HappyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.release.xcconfig"; sourceTree = "<group>"; };
 		966277FAEE92D99705AF534F /* Pods_HappyShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3BFCAB0B42DFAF33B2BFCD /* Pods-HappyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.debug.xcconfig"; sourceTree = "<group>"; };
+		F970095A1CD38A4200D90235 /* QuantityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityCell.swift; sourceTree = "<group>"; };
+		F970095B1CD38A4200D90235 /* QuantityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuantityCell.xib; sourceTree = "<group>"; };
 		F98473851CC416CE00379B39 /* HappyShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98473991CC416CE00379B39 /* HappyShopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyShopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F984739D1CC416CE00379B39 /* HappyShopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyShopTests.swift; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 				F9F0AE3B1CCC0F55008BD59E /* ProductsTableView.swift */,
 				F9F0AE3C1CCC0F55008BD59E /* ShoppedItemCell.swift */,
 				F9F0AE3D1CCC0F55008BD59E /* ShoppedItemCell.xib */,
+				F970095A1CD38A4200D90235 /* QuantityCell.swift */,
+				F970095B1CD38A4200D90235 /* QuantityCell.xib */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				F9F0AE4B1CCC0F55008BD59E /* LaunchScreen.storyboard in Resources */,
 				F9F0AE4A1CCC0F55008BD59E /* Assets.xcassets in Resources */,
 				F9F0AE441CCC0F55008BD59E /* Info.plist in Resources */,
+				F970095D1CD38A4200D90235 /* QuantityCell.xib in Resources */,
 				F9F0AE521CCC0F55008BD59E /* placeholder.png in Resources */,
 				F9F0AE5C1CCC0F56008BD59E /* ProductsTableCell.xib in Resources */,
 				F9F0AE511CCC0F55008BD59E /* listIcon.png in Resources */,
@@ -548,6 +555,7 @@
 				F9F0AE451CCC0F55008BD59E /* Constants.swift in Sources */,
 				F9F0AE5A1CCC0F56008BD59E /* UIScrollView+Custom.swift in Sources */,
 				F9F0AE401CCC0F55008BD59E /* HomeViewController.swift in Sources */,
+				F970095C1CD38A4200D90235 /* QuantityCell.swift in Sources */,
 				F9F0AE5E1CCC0F56008BD59E /* ShoppedItemCell.swift in Sources */,
 				F9F0AE551CCC0F55008BD59E /* CategoriesCollectionView.swift in Sources */,
 				F9F0AE431CCC0F55008BD59E /* ShoppingBagViewController.swift in Sources */,

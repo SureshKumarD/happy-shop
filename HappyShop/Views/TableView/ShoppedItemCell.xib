@@ -5,6 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue-Bold.ttf">
+            <string>HelveticaNeue-Bold</string>
+        </mutableArray>
         <mutableArray key="HelveticaNeue-Medium.ttf">
             <string>HelveticaNeue-Medium</string>
         </mutableArray>
@@ -45,7 +48,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uL0-Qc-cg9">
-                        <rect key="frame" x="120" y="123" width="150" height="30"/>
+                        <rect key="frame" x="150" y="123" width="150" height="30"/>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="51k-JW-b2s"/>
@@ -65,18 +68,34 @@
                             <action selector="productRemoveButtonTapped:" destination="yuZ-Vw-kla" eventType="touchUpInside" id="sIi-zU-yUB"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5Y-GC-F59">
+                        <rect key="frame" x="15" y="123" width="50" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="JbP-lD-vwf"/>
+                            <constraint firstAttribute="height" constant="30" id="nht-i6-c7S"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="quantityButtonTapped:" destination="yuZ-Vw-kla" eventType="touchUpInside" id="g8v-2f-TOm"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="np8-cJ-qWl" secondAttribute="trailing" constant="15" id="0WS-fP-lno"/>
                     <constraint firstItem="u1n-7g-Odf" firstAttribute="leading" secondItem="OsN-9R-xbH" secondAttribute="leading" constant="15" id="B2Y-MJ-UEW"/>
                     <constraint firstItem="np8-cJ-qWl" firstAttribute="top" secondItem="XBa-MN-5lQ" secondAttribute="bottom" constant="8" id="Dyg-Y2-6mC"/>
+                    <constraint firstAttribute="bottom" secondItem="f5Y-GC-F59" secondAttribute="bottom" constant="16.5" id="Frm-j9-9lu"/>
                     <constraint firstItem="np8-cJ-qWl" firstAttribute="leading" secondItem="u1n-7g-Odf" secondAttribute="trailing" constant="5" id="Grf-4l-CdF"/>
+                    <constraint firstItem="uL0-Qc-cg9" firstAttribute="leading" secondItem="f5Y-GC-F59" secondAttribute="trailing" constant="85" id="HJx-5e-6cN"/>
                     <constraint firstItem="XBa-MN-5lQ" firstAttribute="leading" secondItem="u1n-7g-Odf" secondAttribute="trailing" constant="5" id="Mpm-As-s9g"/>
                     <constraint firstAttribute="bottom" secondItem="uL0-Qc-cg9" secondAttribute="bottom" constant="16.5" id="Oaq-g0-ajh"/>
                     <constraint firstItem="XBa-MN-5lQ" firstAttribute="top" secondItem="OsN-9R-xbH" secondAttribute="top" constant="15" id="Sal-Wr-mIj"/>
-                    <constraint firstItem="uL0-Qc-cg9" firstAttribute="top" secondItem="np8-cJ-qWl" secondAttribute="bottom" constant="29" id="VpP-d3-EN7"/>
                     <constraint firstAttribute="trailing" secondItem="XBa-MN-5lQ" secondAttribute="trailing" constant="15" id="X6C-6O-ywl"/>
-                    <constraint firstItem="uL0-Qc-cg9" firstAttribute="leading" secondItem="OsN-9R-xbH" secondAttribute="leading" constant="120" id="ne3-ig-bmG"/>
+                    <constraint firstItem="f5Y-GC-F59" firstAttribute="top" secondItem="u1n-7g-Odf" secondAttribute="bottom" constant="8" id="cMF-dq-aVV"/>
+                    <constraint firstItem="f5Y-GC-F59" firstAttribute="leading" secondItem="OsN-9R-xbH" secondAttribute="leading" constant="15" id="uqR-fJ-SJl"/>
                     <constraint firstItem="u1n-7g-Odf" firstAttribute="top" secondItem="OsN-9R-xbH" secondAttribute="top" constant="15" id="xsU-DC-u6F"/>
                 </constraints>
             </tableViewCellContentView>
@@ -85,6 +104,7 @@
                 <outlet property="productNameLabel" destination="XBa-MN-5lQ" id="Sq8-Wi-l9R"/>
                 <outlet property="productPriceLabel" destination="np8-cJ-qWl" id="cD1-e1-LFf"/>
                 <outlet property="productRemoveButton" destination="uL0-Qc-cg9" id="6kN-Bf-DD2"/>
+                <outlet property="quantityCountButton" destination="f5Y-GC-F59" id="tHn-tw-VQW"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -31,6 +31,11 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     //Header view to be passed in the tableview's header
     private var headerView : UIView!
     
+    //Quantity...
+    private var quantityTableView : UITableView!
+    private var isQuantityTableVisible : Bool!
+    private var selectedProductIndex : Int!
+    
     //Number Formatter - (comma , )separated numbers...
     let numberFormatter = NSNumberFormatter()
     
@@ -70,6 +75,13 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         self.headerContainerView.layer.borderColor = kGRAY_COLOR.CGColor
         self.headerContainerView.layer.borderWidth = 0.5
         
+        let frame = CGRect(x: ((WIDTH_WINDOW_FRAME / 2) - 30), y: ((HEIGHT_WINDOW_FRAME/2) - 396/2), width: 60, height: 396)
+        self.quantityTableView = UITableView(frame: frame, style: UITableViewStyle.Plain)
+        self.quantityTableView.delegate = self
+        self.quantityTableView.dataSource = self
+        self.quantityTableView.backgroundColor = kCLEAR_COLOR;
+        self.isQuantityTableVisible = false
+        
         self.initializeTableHeaderView()
         self.loadShoppedItemsArray()
         
@@ -98,12 +110,18 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         self.shoppedItems = []
         let shoppingBagItems = DataManager.sharedDataManager().selectedProductList
         var totalAmount : Double = 0.0
+        var totalCount : Int = 0
         for (_, subJson) in shoppingBagItems {
-            totalAmount += subJson["product"]["price"].doubleValue
+            var quantity = (subJson["product"]["quantity"].intValue)
+            if(quantity == 0) {
+                quantity = 1
+            }
+            totalCount += quantity
+            totalAmount += Double(quantity) *  (subJson["product"]["price"].doubleValue)
             self.shoppedItems.append(subJson)
             
         }
-        self.totalItemsLabel.text = "Total Items  : "+"\(shoppedItems.count)"
+        self.totalItemsLabel.text = "Total Items  : "+"\(totalCount)"
         
         let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(totalAmount))) as String!
         self.totalAmountLabel.text = "Total Amount  : "+tempString
@@ -116,57 +134,103 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var itemsCount = self.shoppedItems.count
-        if itemsCount == NUMBER_ZERO {
-            itemsCount = NUMBER_ONE
+        if(tableView == self.quantityTableView) {
+            return 9
+        }else {
+            var itemsCount = self.shoppedItems.count
+            if itemsCount == NUMBER_ZERO {
+                itemsCount = NUMBER_ONE
+            }
+            return itemsCount
         }
-        return itemsCount
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        //TODO:- Returns 'no items in your bag' messaged cell,
-        //If the 'shoppedItems' array count is 0
-        if(self.shoppedItems.count == NUMBER_ZERO) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NoItemsCell")
+        if(tableView == self.quantityTableView) {
+            
+            var cell = tableView.dequeueReusableCellWithIdentifier("QuantityCell") as? QuantityCell
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "QuantityCell", bundle: nil), forCellReuseIdentifier: "QuantityCell")
+                cell = tableView.dequeueReusableCellWithIdentifier("QuantityCell") as? QuantityCell
+            }
+            
+            cell?.quantityCountLabel.text = "\(indexPath.row + NUMBER_ONE)"
+            cell?.quantityCountLabel.tag = indexPath.row
+            cell?.selectionStyle = .None
             return cell!
+            
+        }else {
+            //TODO:- Returns 'no items in your bag' messaged cell,
+            //If the 'shoppedItems' array count is 0
+            if(self.shoppedItems.count == NUMBER_ZERO) {
+                let cell = tableView.dequeueReusableCellWithIdentifier("NoItemsCell")
+                return cell!
+            }
+            
+            //Else the 'ShoppedItems' array count is > 0
+            //Returns data populated 'ShoppedItemCell'
+            var cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "ShoppedItemCell", bundle: nil), forCellReuseIdentifier: "ShoppedItemCell")
+                cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
+                cell?.productNameLabel.sizeToFit()
+            }
+            
+            //JSON object unwrapped from array...
+            let productObject = self.shoppedItems[indexPath.row]
+            
+            //Configure cell's subviews data...
+            self.configureShoppingBagTableView(&cell!, productObject: productObject, index: indexPath.row)
+            
+            //Return the data populated cell...
+            return cell!
+
+            
         }
-        
-        //Else the 'ShoppedItems' array count is > 0
-        //Returns data populated 'ShoppedItemCell'
-        var cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
-        
-        if cell == nil {
-            tableView.registerNib(UINib(nibName: "ShoppedItemCell", bundle: nil), forCellReuseIdentifier: "ShoppedItemCell")
-            cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
-            cell?.productNameLabel.sizeToFit()
-        }
-        
-        //JSON object unwrapped from array...
-        let productObject = self.shoppedItems[indexPath.row]
-        
-        //Configure cell's subviews data...
-        self.configureShoppingBagTableView(&cell!, productObject: productObject, index: indexPath.row)
-        
-        //Return the data populated cell...
-        return cell!
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let itemsCount = self.shoppedItems.count
-        if itemsCount == NUMBER_ZERO {
-           return kCELL_HEIGHT_NO_ITEM
+        
+        if(tableView == self.quantityTableView) {
+            return 44
+        }else {
+            let itemsCount = self.shoppedItems.count
+            if itemsCount == NUMBER_ZERO {
+                return kCELL_HEIGHT_NO_ITEM
+            }
+            return kCELL_HEIGHT_DEFAULT
         }
-        return kCELL_HEIGHT_DEFAULT
+        
        
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return kHEADER_HEIGHT
+        if(tableView == self.quantityTableView) {
+            return 0
+        }else {
+            return kHEADER_HEIGHT
+        }
+        
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return self.headerView
+        if(tableView == self.quantityTableView) {
+            return nil
+        }else {
+            return self.headerView
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+         if(tableView == self.quantityTableView) {
+            self.showOrHideQuantityTableView(indexPath.row + NUMBER_ONE)
+        }
+        
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -212,6 +276,19 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         //Setting delegate to get remove items.
         cell.removeItemDelegate = self
         
+        
+        //Quantity...
+        //Quantity Button
+        cell.quantityCountButton.tag = index
+
+        var quantityCount = productObject["product"]["quantity"].stringValue
+        if(quantityCount.isEmpty) {
+            quantityCount = "1"
+        }
+       
+        //Set the quantityCountButton.
+        cell.quantityCountButton.setTitle("Nos. "+quantityCount, forState: .Normal)
+        
 
     }
 
@@ -224,6 +301,13 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         let sharedDataInstance = DataManager.sharedDataManager()
         sharedDataInstance.selectedProductList.dictionaryObject?.removeValueForKey(productId)
         self.saveShoppingItems()
+    }
+    
+    func quantityButtonTappedAt(index: Int) {
+        
+        self.selectedProductIndex = index
+        
+        self.showOrHideQuantityTableView(index)
     }
     
     //Save items in shopping bag...
@@ -250,6 +334,52 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
         //Reload the tableview...
         self.itemsTableView.reloadData()
+        
+    }
+    
+    
+    private func showOrHideQuantityTableView(index : Int) {
+        
+        //Hide the quantity tableview...
+        if(self.isQuantityTableVisible == true) {
+            
+            //Make the background tangible
+            self.view.userInteractionEnabled = true
+            self.view.alpha = 1.0
+
+            var jsonObject = self.shoppedItems[self.selectedProductIndex] as JSON
+            let productId = jsonObject["product"]["id"].stringValue
+            jsonObject["product"]["quantity"].intValue = index
+            
+            let sharedDataInstance = DataManager.sharedDataManager()
+            
+            //Replace the particular object with the updated quantity
+            sharedDataInstance.selectedProductList[productId] = jsonObject
+
+            //Stoer it in DB...
+            self.saveShoppingItems()
+
+            //Remove the quantity tableview from TableView
+            self.quantityTableView.removeFromSuperview()
+            
+            //Set the isQuantityTableVisible flag to false
+            self.isQuantityTableVisible = false
+            
+        }else {
+            //Unhide the quantity tableview...
+            
+            //Make the background intangible, before adding quantity tableview...
+            self.view.userInteractionEnabled = false
+            self.view.alpha = 0.2
+            
+            //Add the quantity tableview on the window tableview...
+            let mainWindow = UIApplication.sharedApplication().keyWindow
+            mainWindow?.addSubview(self.quantityTableView)
+            
+            //Set the isQuantityTableVisible falg to true
+            self.isQuantityTableVisible = true
+        }
+        
         
     }
 }

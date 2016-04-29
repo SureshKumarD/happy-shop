@@ -28,5 +28,7 @@ protocol ProductDelegate : class {
 protocol SelectedItemDelegate : class {
     
     func removeItemAtIndex(index : Int)->Void
+    
+    func quantityButtonTappedAt(index :Int)->Void
 }
 
