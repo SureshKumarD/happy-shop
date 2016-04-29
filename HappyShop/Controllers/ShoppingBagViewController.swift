@@ -50,11 +50,20 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         super.viewWillAppear(animated)
         self.setNavigationTitle("Shopping Bag")
     }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.loadShoppedItemsArray()
         self.itemsTableView.reloadData()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        //Remove the quantity tableview from TableView
+        self.quantityTableView.removeFromSuperview()
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HappyShop/Controllers/ShoppingBagViewController.swift"
-            timestampString = "483631974.107373"
+            timestampString = "483640598.808717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "removeItemAtIndex(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HappyShop/Controllers/ShoppingBagViewController.swift"
-            timestampString = "483631974.107373"
+            timestampString = "483640598.808717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "saveShoppingItems()"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HappyShop/Controllers/ShoppingBagViewController.swift"
-            timestampString = "483632261.128937"
+            timestampString = "483640598.808717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "showOrHideQuantityTableView(_:)"
             landmarkType = "5">
          </BreakpointContent>
