@@ -31,7 +31,7 @@ class NetworkManager: NSObject {
         manager.get(urlString, parameters: params , progress: nil, success: {
             (task: URLSessionDataTask, responseObject: Any!) in
             
-            //TODO: - Check for valid response.
+            //Check for valid response.
             if let responseDict = responseObject as? Dictionary<String, AnyObject> {
                 let response = JSON(responseDict)
                 

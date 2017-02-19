@@ -181,7 +181,7 @@ class ProductViewController: BaseViewController {
     
     //MARK:- Fetch Particular Product Info
     func getProductFromServer() {
-        //TODO:- Get particular product once for this instance.
+        //Get particular product once for this instance.
         let productId = particularProductJSON["id"].stringValue as String!
         let urlString = "\(API_KEY)/\(URL_FRAGMENT_API)/\(API_VERSION)/\(URL_DATA_PRODUCTS)/"+"\(productId!)"+"\(URL_FRAGMENT_JSON)"
         DataManager.sharedDataManager.startActivityIndicator()

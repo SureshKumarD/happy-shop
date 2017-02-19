@@ -171,7 +171,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
             return cell!
             
         }else {
-            //TODO:- Returns 'no items in your bag' messaged cell,
+            //Returns 'no items in your bag' messaged cell,
             //If the 'shoppedItems' array count is 0
             if(self.shoppedItems.count == NUMBER_ZERO) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NoItemsCell")
