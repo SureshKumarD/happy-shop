@@ -24,9 +24,9 @@ class HomeViewController: BaseViewController, CategoryDelegate {
         self.initializations()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationTitle("HappyShop")
+        self.setNavigationTitle(title:"HappyShop")
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,14 +52,14 @@ class HomeViewController: BaseViewController, CategoryDelegate {
         self.categoriesCollectionView = CategoriesCollectionView(frame: self.view.bounds , collectionViewLayout: flowLayout)
         self.categoriesCollectionView.backgroundColor = kCLEAR_COLOR
         self.categoriesCollectionView.categoryDelegate = self
-        self.view.addSubview(self.categoriesCollectionView)
+        self.view.addSubview(self.categoriesCollectionView!)
         
     }
     
     //Register CollectionView Nib
     private func registerAllNibs() {
-        
-        self.categoriesCollectionView.registerNib(UINib.init(nibName: "CategoriesCollectionCell", bundle: nil), forCellWithReuseIdentifier:"CategoriesCollectionCell")
+       
+        self.categoriesCollectionView.register( UINib(nibName: "CategoriesCollectionCell", bundle: nil), forCellWithReuseIdentifier: "CategoriesCollectionCell")
         
     }
 
@@ -77,8 +77,9 @@ class HomeViewController: BaseViewController, CategoryDelegate {
     //MARK:- Category Delegate
     func categorySelected(item: AnyObject!) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let productsVC = storyBoard.instantiateViewControllerWithIdentifier("ProductsViewController") as! ProductsViewController
-        DataManager.sharedDataManager().selectedProductCategory =  item as! String!
+        let productsVC = storyBoard.instantiateViewController(withIdentifier: "ProductsViewController") as! ProductsViewController
+
+        DataManager.sharedDataManager.selectedProductCategory =  item as! String!
         
         self.navigationController?.pushViewController(productsVC, animated: false)
         

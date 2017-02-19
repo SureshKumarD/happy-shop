@@ -27,13 +27,14 @@ class DataManager: NSObject {
     
     //To the cart...
     var selectedProductList : JSON = [:]
-    
+ 
+        
     //MARK:- Shared Instance
-    class func sharedDataManager()-> DataManager! {
-        //Returns the static, singleton instance...
-        return dataManager
-    }
-
+    static let sharedDataManager:DataManager = {
+        let instance = DataManager()
+        return instance
+    }()
+   
     //MARK:- Init
     override init() {
         
@@ -43,9 +44,9 @@ class DataManager: NSObject {
         //Get the available saved items from the DB.
         //Returns a tuple(multiple objects i.,e valueString, managedObject).
         //It's required to valueString only, so, unwrap and store it in singleton object.
-        let jsonString = KeyValueDataBaseManager.objectStringForKey(kCART_ITEMS_KEY)
+        let jsonString = KeyValueDataBaseManager.objectStringForKey(key: kCART_ITEMS_KEY)
         if((jsonString.valueString?.isEmpty) == false) {
-            let jsonObject = DataManager.convertStringToJSON(jsonString.valueString!)! as JSON
+            let jsonObject = DataManager.convertStringToJSON(jsonString: jsonString.valueString!)! as JSON
             self.selectedProductList = jsonObject
         }
         super.init()
@@ -56,7 +57,7 @@ class DataManager: NSObject {
     
     //Convert the string into JSON object...
     class func convertStringToJSON(jsonString: String) -> JSON? {
-        if let dataFromString = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+        if let dataFromString = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: false) {
             let json = JSON(data: dataFromString)
             return json
         }
@@ -70,8 +71,8 @@ class DataManager: NSObject {
         
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
-        gradient.colors = [kSNOW_COLOR.CGColor, kWHITE_COLOR.CGColor, kSNOW_COLOR.CGColor]
-        view.layer.insertSublayer(gradient, atIndex: 0)
+        gradient.colors = [kSNOW_COLOR.cgColor, kWHITE_COLOR.cgColor, kSNOW_COLOR.cgColor]
+        view.layer.insertSublayer(gradient, at: 0)
         
         
     }
@@ -85,9 +86,9 @@ class DataManager: NSObject {
             self.activityIndicator  = UIActivityIndicatorView()
             
         }
-        self.activityIndicator?.frame = CGRectMake(WIDTH_WINDOW_FRAME/2 - 50, HEIGHT_WINDOW_FRAME/2-50, 100, 100)
-        self.activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        let mainWindow = UIApplication.sharedApplication().keyWindow
+        self.activityIndicator?.frame = CGRect(x:WIDTH_WINDOW_FRAME/2 - 50, y:HEIGHT_WINDOW_FRAME/2-50, width:100, height:100)
+        self.activityIndicator?.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        let mainWindow = UIApplication.shared.keyWindow
         mainWindow?.addSubview(self.activityIndicator!)
         
         self.activityIndicator?.startAnimating()

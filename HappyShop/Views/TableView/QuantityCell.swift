@@ -13,7 +13,7 @@ class QuantityCell: UITableViewCell {
     @IBOutlet weak var quantityCountLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.quantityCountLabel.layer.borderColor = kBLACK_COLOR.CGColor
+        self.quantityCountLabel.layer.borderColor = kBLACK_COLOR.cgColor
         self.quantityCountLabel.layer.borderWidth = 1.0
         self.quantityCountLabel.layer.cornerRadius = 5.0
         self.quantityCountLabel.layer.masksToBounds = true
@@ -22,7 +22,7 @@ class QuantityCell: UITableViewCell {
         self.contentView.backgroundColor = kCLEAR_COLOR
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

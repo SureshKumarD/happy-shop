@@ -30,15 +30,15 @@ let NUMBER_FOUR = 4
 let NUMBER_FIVE = 5
 
 //Frame windo...
-let WIDTH_WINDOW_FRAME =  UIScreen.mainScreen().bounds.size.width
-let HEIGHT_WINDOW_FRAME =  UIScreen.mainScreen().bounds.size.height
+let WIDTH_WINDOW_FRAME =  UIScreen.main.bounds.size.width
+let HEIGHT_WINDOW_FRAME =  UIScreen.main.bounds.size.height
 
 //Colors...
-let kCLEAR_COLOR = UIColor.clearColor()
+let kCLEAR_COLOR = UIColor.clear
 let kBLACK_COLOR = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
 let kGRAY_COLOR = UIColor(red: 102/255, green: 102/255, blue: 108/255, alpha: 1.0)
 let kGRAY_COLOR2 = UIColor(red: 200/255, green: 199/255, blue: 204/255, alpha: 1.0)
-let kWHITE_COLOR = UIColor.whiteColor()
+let kWHITE_COLOR = UIColor.white
 let kBLUE_COLOR = UIColor(red: 67/255, green: 164/255, blue: 188/255, alpha: 1.0)
 let kSUB_TEXT_COLOR = UIColor(red: 99/255, green: 99/255, blue: 99/255, alpha: 1.0)
 let kWHITE_COLOR2 = UIColor(red: 255/255, green: 250/255, blue: 240/255, alpha: 1.0)

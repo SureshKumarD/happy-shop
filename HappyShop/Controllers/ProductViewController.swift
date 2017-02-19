@@ -24,10 +24,10 @@ class ProductViewController: BaseViewController {
     private var particularProductDetail : JSON!
     
     //Number Formatter - (comma , )separated numbers...
-    private let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NumberFormatter()
     
     // Token to dispatch once...
-    private var dispatchToken2 : dispatch_once_t = 0
+//    private var dispatchToken2 : dispatch_once_t = 0
 
     //Navigation Items...
    
@@ -42,19 +42,19 @@ class ProductViewController: BaseViewController {
        
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //Set the navigation bar title...
         let titleString  = particularProductJSON["name"].stringValue
-        self.setNavigationTitle(titleString)
+        self.setNavigationTitle(title: titleString)
         
         //Update the bag item count...
         self.updateCartBadgeLabel()
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         //Get the particular product detail from server...
@@ -64,15 +64,15 @@ class ProductViewController: BaseViewController {
     //MARK:- METHODS
     
     //MARK:- Add To Cart Tapped
-    @IBAction func addToCartButtonTapped(sender: AnyObject) {
+    @IBAction func addToCartButtonTapped(_ sender: Any) {
         var message : String!
         var title : String!
         if(self.particularProductDetail["product"]["under_sale"].stringValue == "true") {
             let productId = self.particularProductDetail["product"]["id"].stringValue
             
             
-            if(DataManager.sharedDataManager().selectedProductList[productId] == nil)  {
-                DataManager.sharedDataManager().selectedProductList[productId] = self.particularProductDetail
+            if(DataManager.sharedDataManager.selectedProductList[productId] == nil)  {
+                DataManager.sharedDataManager.selectedProductList[productId] = self.particularProductDetail
                 
                 self.updateCartBadgeLabel()
                 self.saveShoppingItems()
@@ -84,18 +84,18 @@ class ProductViewController: BaseViewController {
                 title = "Already added!"
                 
             }
-           
+            
         }else {
             message = "Product is not availble currently."
             title = "Unavailable!"
         }
-        self.showAlertView(title, message: message)
-        
+        self.showAlertView(title: title, message: message)
     }
+    
     
     //Update cart badge label count...
     private func updateCartBadgeLabel() {
-        let cartItems = DataManager.sharedDataManager().selectedProductList
+        let cartItems = DataManager.sharedDataManager.selectedProductList
         let cartItemsCount = cartItems.count
         self.rightButtonBadgeLabel.text = String(cartItemsCount) as String!
         
@@ -107,24 +107,24 @@ class ProductViewController: BaseViewController {
         //To make the Coredata updation simple and faster.
         //And the converted string will be replaced with the old string based on
         //the key kCART_ITEMS_KEY.
-        if let cartItems = DataManager.sharedDataManager().selectedProductList.rawString() {
-            KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
+        if let cartItems = DataManager.sharedDataManager.selectedProductList.rawString() {
+            KeyValueDataBaseManager.saveObject(key: kCART_ITEMS_KEY, objectString: cartItems)
         }
         
     }
     
     //MARK:- Initialization or Allocations of objects
     private func initializations() {
-        self.numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        self.numberFormatter.numberStyle = NumberFormatter.Style.currency
         self.productImageView.backgroundColor = kWHITE_COLOR
         self.productImageView.layer.masksToBounds = true
         self.productImageView.layer.cornerRadius = CGFloat(NUMBER_FIVE)
-        self.productImageView.layer.borderColor = kWHITE_COLOR.CGColor
+        self.productImageView.layer.borderColor = kWHITE_COLOR.cgColor
         self.productImageView.layer.borderWidth = CGFloat(NUMBER_ONE)
         self.productNameLabel.sizeToFit()
         self.productDescriptionLabel.sizeToFit()
         //Hide Add to cart button...
-        self.addToCartButton.hidden = true
+        self.addToCartButton.isHidden = true
     
         //Navigation Bar
         self.navigationBarDefaultSettings()
@@ -135,7 +135,7 @@ class ProductViewController: BaseViewController {
     private func navigationBarDefaultSettings() {
         
         self.setNavigationRightButton()
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
         
     }
     
@@ -143,16 +143,16 @@ class ProductViewController: BaseViewController {
     //Right Button...
     private func setNavigationRightButton() {
         if(self.rightButton == nil) {
-            self.rightButton = UIButton(type: UIButtonType.System)
+            self.rightButton = UIButton(type: UIButtonType.system)
         }
-        self.rightButton.frame = CGRectMake(20, 0, 50, 50)
+        self.rightButton.frame = CGRect(x: 20, y: 0, width: 50, height: 50)
         self.rightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
         let image = UIImage(named: "icon_shop")
-        let newImage = image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
-        self.rightButton.setImage(newImage, forState: .Normal)
+        let newImage = image?.withRenderingMode(.alwaysTemplate) as UIImage!
+        self.rightButton.setImage(newImage, for: .normal)
         self.rightButton.tintColor = kWHITE_COLOR
-        self.rightButton.imageView?.contentMode = UIViewContentMode.Center
-        self.rightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.rightButton.imageView?.contentMode = UIViewContentMode.center
+        self.rightButton.addTarget(self, action: #selector(ProductViewController.rightButtonTapped), for: UIControlEvents.touchUpInside)
         
         if(self.rightButtonBadgeLabel == nil) {
             self.rightButtonBadgeLabel = UILabel(frame: CGRect(x: 30, y: 25, width: 20, height: 20))
@@ -163,9 +163,9 @@ class ProductViewController: BaseViewController {
         self.rightButtonBadgeLabel.textColor = kWHITE_COLOR
         self.rightButtonBadgeLabel.font = UIFont(name: "HelveticaNeue", size: 10)!
         self.rightButtonBadgeLabel.minimumScaleFactor = 0.5
-        self.rightButtonBadgeLabel.textAlignment = NSTextAlignment.Center
+        self.rightButtonBadgeLabel.textAlignment = NSTextAlignment.center
         self.rightButton.addSubview(self.rightButtonBadgeLabel)
-        self.setTopRightButton(self.rightButton)
+        self.setTopRightButton(rightButton: self.rightButton)
         
     }
 
@@ -173,7 +173,7 @@ class ProductViewController: BaseViewController {
     //Right button tapped action handler
     func rightButtonTapped() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let shoppingBagVC = storyBoard.instantiateViewControllerWithIdentifier("ShoppingBagViewController") as! ShoppingBagViewController
+        let shoppingBagVC = storyBoard.instantiateViewController(withIdentifier: "ShoppingBagViewController") as! ShoppingBagViewController
         
         
         self.navigationController?.pushViewController(shoppingBagVC, animated: false)
@@ -182,23 +182,21 @@ class ProductViewController: BaseViewController {
     //MARK:- Fetch Particular Product Info
     func getProductFromServer() {
         //TODO:- Get particular product once for this instance.
-        dispatch_once(&dispatchToken2) { () -> Void in
-            let productId = self.particularProductJSON["id"].stringValue as String!
-            let urlString = API_KEY+"/"+URL_FRAGMENT_API+"/"+API_VERSION+"/"+URL_DATA_PRODUCTS+"/"+productId+URL_FRAGMENT_JSON
-            DataManager.sharedDataManager().startActivityIndicator()
-            NetworkManager.getFromServer(urlString, params: [:], success: { (response : JSON) -> Void in
-                
-                DataManager.sharedDataManager().stopActivityIndicator()
-                //populate received data on UI...
-                self.populateDataOnUI(response)
-                DataManager.sharedDataManager().isRequiredLoadNextPage = false
-                }) { (error : NSError) -> Void in
-                    DataManager.sharedDataManager().stopActivityIndicator()
-                    DataManager.sharedDataManager().isRequiredLoadNextPage = false
-                    self.showAlertView("Error", message: error.localizedDescription)
-            }
-
+        let productId = particularProductJSON["id"].stringValue as String!
+        let urlString = "\(API_KEY)/\(URL_FRAGMENT_API)/\(API_VERSION)/\(URL_DATA_PRODUCTS)/"+"\(productId!)"+"\(URL_FRAGMENT_JSON)"
+        DataManager.sharedDataManager.startActivityIndicator()
+        NetworkManager.getFromServer(urlString: urlString, params: [:], success: { (response : JSON) -> Void in
+            
+            DataManager.sharedDataManager.stopActivityIndicator()
+            //populate received data on UI...
+            self.populateDataOnUI(jsonData: response)
+            DataManager.sharedDataManager.isRequiredLoadNextPage = false
+        }) { (error : NSError) -> Void in
+            DataManager.sharedDataManager.stopActivityIndicator()
+            DataManager.sharedDataManager.isRequiredLoadNextPage = false
+            self.showAlertView(title: "Error", message: error.localizedDescription)
         }
+
         
     }
 
@@ -206,20 +204,20 @@ class ProductViewController: BaseViewController {
     private func showAlertView(title: String!, message : String!) {
         let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: nil)
         alertView.show()
-        alertView.closAlertAfterDelay(3.0)
+        alertView.closAlertAfterDelay(delayInSeconds: 3.0)
     }
 
     private func populateDataOnUI(jsonData : JSON) {
         
         self.particularProductDetail = jsonData
         
-        let url  = NSURL(string:  jsonData["product"]["img_url"].stringValue)
+        let url  = URL(string:jsonData["product"]["img_url"].stringValue)
         
         //Product Image
-        self.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        self.productImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.cacheMemoryOnly)
         self.productImageView.layer.masksToBounds = true
         self.productImageView.layer.cornerRadius = 5.0
-        self.productImageView.layer.borderColor = kGRAY_COLOR.CGColor
+        self.productImageView.layer.borderColor = kGRAY_COLOR.cgColor
         self.productImageView.layer.borderWidth = 0.5
         
 
@@ -229,9 +227,9 @@ class ProductViewController: BaseViewController {
         self.productNameLabel.sizeToFit()
         
         //Product Price
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(jsonData["product"]["price"].doubleValue) as NSInteger!))!
+        let tempString = self.numberFormatter.string(from: NSNumber(value:Int(jsonData["product"]["price"].doubleValue) as NSInteger!))!
         self.productPriceLabel.text =  tempString
-        self.addToCartButton.hidden = false
+        self.addToCartButton.isHidden = false
         if(jsonData["product"]["under_sale"].stringValue == "true") {
             self.productAvailabilityLabel.text = "Available"
             self.productAvailabilityLabel.textColor = kGREEN_COLOR

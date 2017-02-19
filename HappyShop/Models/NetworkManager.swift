@@ -14,10 +14,10 @@ class NetworkManager: NSObject {
     //MARK: - Server Call
     // Common Get request from server
     // Fetches list of products/ particular product info.
-    class func getFromServer(urlString : String, params: [String : String], success: (JSON)-> Void, failure :( NSError)->Void) {
+    class func getFromServer(urlString : String, params: [String : String], success: @escaping (JSON)-> Void, failure :@escaping ( NSError)->Void) {
         
         //Uses RESTful approach, ie., BaseUrl + Url fragment...
-        let manager = AFHTTPSessionManager(baseURL: NSURL(string:URL_BASE))
+        let manager = AFHTTPSessionManager(baseURL: URL(string:URL_BASE))
         manager.requestSerializer = AFJSONRequestSerializer()
         manager.responseSerializer = AFJSONResponseSerializer()
     
@@ -28,8 +28,8 @@ class NetworkManager: NSObject {
         // Add common parameters, along with the existing parameters...
         let composedParams = NetworkManager.addCommonParameter(params)
         */
-        manager.GET(urlString, parameters: params , progress: nil, success: {
-            (task: NSURLSessionDataTask!, responseObject: AnyObject?) in
+        manager.get(urlString, parameters: params , progress: nil, success: {
+            (task: URLSessionDataTask, responseObject: Any!) in
             
             //TODO: - Check for valid response.
             if let responseDict = responseObject as? Dictionary<String, AnyObject> {
@@ -44,13 +44,13 @@ class NetworkManager: NSObject {
                 print("Unrecognized data received")
             }
             }, failure: {
-                (task: NSURLSessionDataTask?, error: NSError) in
+                (task: URLSessionDataTask?, error: Error) in
                 
                 //Log to acknowledge developer.
                 print("error")
                 
                 //Failure callback to the caller...
-                failure( error)
+                failure( error as NSError)
         })
         
     }

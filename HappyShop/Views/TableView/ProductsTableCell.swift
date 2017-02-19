@@ -21,13 +21,13 @@ class ProductsTableCell: UITableViewCell {
         
         self.containerView.layer.masksToBounds = true
         self.containerView.layer.cornerRadius = 5.0
-        self.containerView.layer.borderColor = UIColor.grayColor().CGColor
+        self.containerView.layer.borderColor = UIColor.gray.cgColor
         self.containerView.backgroundColor = kWHITE_COLOR
         self.contentView.backgroundColor = kWHITE_COLOR
         self.productNameLabel.sizeToFit()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

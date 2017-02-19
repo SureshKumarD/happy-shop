@@ -15,12 +15,12 @@ class CategoriesCollectionCell: UICollectionViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.borderColor = kGRAY_COLOR2.CGColor
+        self.layer.borderColor = kGRAY_COLOR2.cgColor
         self.layer.borderWidth = 0.5
-        self.contentView.backgroundColor = UIColor.clearColor()
+        self.contentView.backgroundColor = UIColor.clear
         
         //Set light gradient background color on cell...
-        DataManager.sharedDataManager().setGradientBackgroundColor(self)
+        DataManager.sharedDataManager.setGradientBackgroundColor(view: self)
     }
     
     

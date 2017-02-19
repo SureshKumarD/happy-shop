@@ -11,10 +11,10 @@ import UIKit
 public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
 
     //local object
-    public var categoriesArray : [AnyObject] = DataManager.sharedDataManager().categoriesArray
+    public var categoriesArray : [AnyObject] = DataManager.sharedDataManager.categoriesArray as [AnyObject]
     
     //Number Formatter - (comma , )separated numbers...
-    private let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NumberFormatter()
     
     //Delegate to pass data
     var categoryDelegate : CategoryDelegate!
@@ -24,7 +24,7 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = kCLEAR_COLOR
-        self.numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        self.numberFormatter.numberStyle = NumberFormatter.Style.decimal
         
     }
     
@@ -37,13 +37,13 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
         return NUMBER_ONE
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.categoriesArray.count
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CategoriesCollectionCell", forIndexPath: indexPath) as! CategoriesCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionCell", for: indexPath as IndexPath) as! CategoriesCollectionCell
 //        DataManager.sharedDataManager().setGradientBackgroundColor(&cell)
         let category = self.categoriesArray[indexPath.row]
         cell.categoryNameLabel.text = category as? String
@@ -52,16 +52,16 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
     }
     
     
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         return UICollectionReusableView()
     }
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if(indexPath.row % 3 == NUMBER_ZERO) {
-            return CGSizeMake((WIDTH_WINDOW_FRAME - 2), WIDTH_WINDOW_FRAME/2)
+            return CGSize(width:(WIDTH_WINDOW_FRAME - 2), height:WIDTH_WINDOW_FRAME/2)
         }else {
-            return CGSizeMake((WIDTH_WINDOW_FRAME/2 - 0.5), WIDTH_WINDOW_FRAME/2)
+            return CGSize(width:(WIDTH_WINDOW_FRAME/2 - 0.5), height: WIDTH_WINDOW_FRAME/2)
         }
         
         
@@ -69,9 +69,9 @@ public class CategoriesCollectionView: UICollectionView, UICollectionViewDelegat
     
     //MARK:- CollectionView Delegates
     
-    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let object = self.categoriesArray[indexPath.row]
-            self.categoryDelegate.categorySelected(object)
+            self.categoryDelegate.categorySelected(item: object)
     }
     
 

@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     // Token to dispatch once...
-    private var dispatchToken : dispatch_once_t = 0
+    private var oneTimeToken = {0}()
     
     //Navigation Items...
     private var leftBarButtonItem : UIBarButtonItem!
@@ -22,30 +22,31 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Initiate the Network Monitoring...
-        AFNetworkReachabilityManager.sharedManager().startMonitoring();
+        AFNetworkReachabilityManager.shared().stopMonitoring()
+       
         
         self.defaultStylingAndProperties()
-        self.setNavigationBarTintColor(kBLUE_COLOR)
+        self.setNavigationBarTintColor(color:kBLUE_COLOR)
         
         //Set View's gradient background color
-        DataManager.sharedDataManager().setGradientBackgroundColor(self.view);
+        DataManager.sharedDataManager.setGradientBackgroundColor(view:self.view);
         
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //Add reachability observer for the current class...
         self.addreachabilityObserver()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
@@ -53,7 +54,7 @@ class BaseViewController: UIViewController {
         self.removeReachabilityObserver()
         
         //Hide activity indicator if exists...
-        DataManager.sharedDataManager().stopActivityIndicator()
+        DataManager.sharedDataManager.stopActivityIndicator()
 
     }
     
@@ -82,7 +83,7 @@ class BaseViewController: UIViewController {
     
     func setNavigationBarTintColor(color : UIColor) {
         self.navigationController?.navigationBar.barTintColor = color
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
         
     }
     
@@ -94,21 +95,22 @@ class BaseViewController: UIViewController {
             return
         }
         if(self.navigationLeftButton == nil) {
-            self.navigationLeftButton = UIButton(type: UIButtonType.System)
+            self.navigationLeftButton = UIButton(type: UIButtonType.system)
         }
-        self.navigationLeftButton.frame = CGRectMake(0, 0, 50, 50)
+        
+        self.navigationLeftButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         self.navigationLeftButton.imageEdgeInsets = UIEdgeInsetsMake(15,12,15,12)
         self.navigationLeftButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 10)
     
         let image = UIImage(named: "backArrow")
-        let newImage = image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
+        let newImage = image?.withRenderingMode(.alwaysTemplate) as UIImage!
     
-        self.navigationLeftButton.setImage(newImage, forState: .Normal)
+        self.navigationLeftButton.setImage(newImage, for: .normal)
         self.navigationLeftButton.tintColor = kWHITE_COLOR
     
     
-        self.navigationLeftButton.imageView?.contentMode = UIViewContentMode.Center
-        self.navigationLeftButton.addTarget(self, action: Selector("backButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.navigationLeftButton.imageView?.contentMode = UIViewContentMode.center
+        self.navigationLeftButton.addTarget(self, action: #selector(BaseViewController.backButtonTapped), for: UIControlEvents.touchUpInside)
         self.leftBarButtonItem.customView = self.navigationLeftButton
         self.navigationItem.leftBarButtonItem = self.leftBarButtonItem
     }
@@ -131,7 +133,7 @@ class BaseViewController: UIViewController {
     //MARK:- Navigaton Action Handlers
     //BackButtonTapped
     func backButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 
 
@@ -139,16 +141,17 @@ class BaseViewController: UIViewController {
     //MARK:- Reachability observer - notifier
     //Add Reachability Observer
     private func addreachabilityObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("networkChanged:"), name: AFNetworkingReachabilityDidChangeNotification, object: nil);
+        
+        NotificationCenter.default.addObserver(self, selector: Selector("networkChanged:"), name: NSNotification.Name.AFNetworkingReachabilityDidChange, object: nil);
     }
     
     //Remove Rechability Observer
     private func removeReachabilityObserver() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: AFNetworkingReachabilityDidChangeNotification, object: nil);
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AFNetworkingReachabilityDidChange, object: nil);
     }
     
     func networkChanged(sender : AnyObject) {
-        let isConnected = AFNetworkReachabilityManager.sharedManager().reachable
+        let isConnected = AFNetworkReachabilityManager.shared().isReachable
         if(!isConnected) {
             let alertView = UIAlertView(title: "Network Unavailable!", message: "You're seems to be offline, please connect to a network", delegate: self, cancelButtonTitle: "Ok")
             alertView.show()
@@ -159,8 +162,8 @@ class BaseViewController: UIViewController {
     
     //MARK:- After DidLayout Actions
     override func viewDidLayoutSubviews() {
-        NSObject.cancelPreviousPerformRequestsWithTarget(self, selector: Selector("didFinishLayout"), object: nil)
-        self.performSelector(Selector("didFinishLayout"), withObject: nil, afterDelay: 0)
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(BaseViewController.didFinishLayout), object: nil)
+        self.perform(#selector(BaseViewController.didFinishLayout), with: nil, afterDelay: 0)
     }
     
     
@@ -170,20 +173,15 @@ class BaseViewController: UIViewController {
         //Does nothing, as this method will be overriden in the subclasses, if it is required.
     }
     
-    //MARK:- Navigationbar Settings
-    private func setNavigationBarSettings() {
+    
         
-        //TODO:- Set Navigation Default Settings, Once.
-        dispatch_once(&dispatchToken) { () -> Void in
-            
-            //Set Navigation item titleview's title text attributes, globally.
-            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 16)!, NSForegroundColorAttributeName : kWHITE_COLOR]
-            
-            //Changes the status bar text color to white, globally...
-            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
-           
-            
-        }
+    //MARK:- Navigationbar Settings
+    public func setNavigationBarSettings() {
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 16)!, NSForegroundColorAttributeName : kWHITE_COLOR]
+        
+        //Changes the status bar text color to white, globally...
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
         
     }
 

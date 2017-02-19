@@ -19,15 +19,15 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
     var productDelegate : ProductDelegate!
     
     //Number Formatter - (comma , )separated numbers...
-    private let numberFormatter = NSNumberFormatter()
+    private let numberFormatter = NumberFormatter()
     
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         self.delegate = self
         self.dataSource = self
-        self.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        self.separatorStyle = UITableViewCellSeparatorStyle.none
+        self.numberFormatter.numberStyle = NumberFormatter.Style.currency
         self.backgroundColor = kBLACK_COLOR
     }
     
@@ -37,7 +37,7 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = kBLACK_COLOR
-        self.numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        self.numberFormatter.numberStyle = NumberFormatter.Style.currency
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -46,15 +46,16 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         return NUMBER_ONE
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.productsArray.count
     }
-    
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ProductsTableCell") as? ProductsTableCell
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "ProductsTableCell") as? ProductsTableCell
         if cell == nil {
-            tableView.registerNib(UINib(nibName: "ProductsTableCell", bundle: nil), forCellReuseIdentifier: "ProductsTableCell")
-            cell = tableView.dequeueReusableCellWithIdentifier("ProductsTableCell") as? ProductsTableCell
+            
+            tableView.register(UINib(nibName: "ProductsTableCell", bundle: nil), forCellReuseIdentifier: "ProductsTableCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: "ProductsTableCell") as? ProductsTableCell
+        
             cell?.productNameLabel.sizeToFit()
         }
         
@@ -62,30 +63,32 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         let productObject = self.productsArray[indexPath.row]
         
         //Configure cell object's data...
-        self.configureProductsCell(&cell!, productObject: productObject)
+        self.configureProductsCell(cell: &cell!, productObject: productObject)
+    
         
         //Return the data populated cell...
         return cell!
 
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Remove seperator inset
-        if(cell.respondsToSelector(Selector("setSeparatorInset:")) == true) {
-            cell.separatorInset = UIEdgeInsetsZero;
+        if(cell.responds(to: #selector(setter: UITableViewCell.separatorInset)) == true) {
+            cell.separatorInset = UIEdgeInsets.zero
         }
         
         // Prevent the cell from inheriting the Table View's margin settings
-        if(cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:")) == true) {
+        if(cell.responds(to: #selector(setter: UIView.preservesSuperviewLayoutMargins)) == true) {
             cell.preservesSuperviewLayoutMargins = false
         }
         
         // Explictly set your cell's layout margins
-        if(cell.respondsToSelector(Selector("setLayoutMargins:")) == true) {
-            cell.layoutMargins = UIEdgeInsetsZero
+        if(cell.responds(to: #selector(setter: UIView.layoutMargins)) == true) {
+            cell.layoutMargins = UIEdgeInsets.zero
         }
         
         // Draw cell border of height 1px.
@@ -94,28 +97,29 @@ public class ProductsTableView: UITableView, UITableViewDataSource, UITableViewD
         separatorView.backgroundColor = kGRAY_COLOR2
         cell .addSubview(separatorView)
     }
-  
+    
     
     //MARK:- TableView Delegates
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let object = self.productsArray[indexPath.row]
-        self.productDelegate.productSelected(object)
+        self.productDelegate.productSelected(product: object)
     }
     
     
     //Cell Customization...
-    private func configureProductsCell(inout cell : ProductsTableCell , productObject : JSON ) {
+    private func configureProductsCell(cell : inout ProductsTableCell , productObject : JSON ) {
         
-        let url  = NSURL(string:  productObject["img_url"].stringValue)
+        let url  = URL(string:  productObject["img_url"].stringValue) as URL!
         
         //Product Image
-        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        cell.productImageView.sd_setImage(with: url, placeholderImage: UIImage(named:"placeholder"), options: SDWebImageOptions.cacheMemoryOnly)
+//        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.cacheMemoryOnly)
         
         //Product Name
         cell.productNameLabel.text = productObject["name"].stringValue
         
         //Product Price
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["price"].stringValue) as NSInteger!))!
+        let tempString = self.numberFormatter.string(from: NSNumber(value: productObject["price"].intValue))
         cell.productPriceLabel.text =  tempString
         
         if(productObject["under_sale"].stringValue == "true") {

@@ -22,16 +22,16 @@ class ShoppedItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.productImageView.layer.masksToBounds = true
-        self.productImageView.layer.borderColor = kGRAY_COLOR2.CGColor
+        self.productImageView.layer.borderColor = kGRAY_COLOR2.cgColor
         self.productImageView.layer.borderWidth = 0.5
         self.productImageView.layer.cornerRadius = 5.0
         self.quantityCountButton.layer.masksToBounds = true
-        self.quantityCountButton.layer.borderColor = kGRAY_COLOR2.CGColor
+        self.quantityCountButton.layer.borderColor = kGRAY_COLOR2.cgColor
         self.quantityCountButton.layer.borderWidth = 0.5
         self.quantityCountButton.layer.cornerRadius = 5.0
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -39,13 +39,13 @@ class ShoppedItemCell: UITableViewCell {
     
     @IBAction func productRemoveButtonTapped(sender: AnyObject) {
         
-        self.removeItemDelegate.removeItemAtIndex(sender.tag)
+        self.removeItemDelegate.removeItemAtIndex(index:sender.tag)
     }
     
     
     @IBAction func quantityButtonTapped(sender: AnyObject) {
         
-        self.removeItemDelegate.quantityButtonTappedAt(sender.tag)
+        self.removeItemDelegate.quantityButtonTappedAt(index:sender.tag)
     }
 
 }

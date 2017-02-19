@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 extension UIAlertView  {
-    public func closAlertAfterDelay(delayInSeconds : NSTimeInterval) {
-        self.performSelector(Selector("closeAlertView"), withObject: nil, afterDelay: delayInSeconds)
+    public func closAlertAfterDelay(delayInSeconds : TimeInterval) {
+        self.perform(Selector("closeAlertView"), with: nil, afterDelay: delayInSeconds)
        
     }
     
     public func closeAlertView() {
-        self.dismissWithClickedButtonIndex(0, animated: true)
+        self.dismiss(withClickedButtonIndex: 0, animated: true)
     }
 
 }

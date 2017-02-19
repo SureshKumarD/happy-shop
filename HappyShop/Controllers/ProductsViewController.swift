@@ -23,7 +23,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     private var productListingOption : ProductListingOptions!
     
     //Token for one time dispatch...
-    private var token: dispatch_once_t = 0
+//    private var token: dispatch_once_t = 0
     
     //TableView...
     private var productsTableView : ProductsTableView!
@@ -39,21 +39,21 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         //Set navigation title...
-        let titleString = DataManager.sharedDataManager().selectedProductCategory as String!
-        self.setNavigationTitle(titleString)
+        let titleString = DataManager.sharedDataManager.selectedProductCategory as String!
+        self.setNavigationTitle(title: titleString)
         self.navigationController?.hidesBarsOnSwipe = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.getProductsFromServer()
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.resetPaginationVariables()
     }
@@ -85,7 +85,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     private func navigationBarDefaultSettings() {
 
         self.setNavigationRightButton()
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
 
     }
     
@@ -106,18 +106,18 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     // TableView initial settings...
     private func tableViewDefaultSettings() {
         
-        self.productsTableView = ProductsTableView(frame: self.containerView.bounds , style: UITableViewStyle.Plain)
+        self.productsTableView = ProductsTableView(frame: self.containerView.bounds , style: UITableViewStyle.plain)
         self.productsTableView.backgroundColor = kCLEAR_COLOR
         self.productsTableView.productDelegate = self
         self.containerView.addSubview(self.productsTableView)
-        self.productsTableView.hidden = true
+        self.productsTableView.isHidden = true
         
     }
     
     //Register CollectionView Nib
     private func registerAllNibs() {
         
-        self.productsCollectionView.registerNib(UINib.init(nibName: "ProductsCollectionCell", bundle: nil), forCellWithReuseIdentifier:"ProductsCollectionCell")
+        self.productsCollectionView.register(UINib.init(nibName: "ProductsCollectionCell", bundle: nil), forCellWithReuseIdentifier:"ProductsCollectionCell")
         
     }
     
@@ -130,19 +130,19 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     //Right Button...
     private func setNavigationRightButton() {
         if(self.rightButton == nil) {
-            self.rightButton = UIButton(type: UIButtonType.System)
+            self.rightButton = UIButton(type: UIButtonType.system)
         }
-        self.rightButton.frame = CGRectMake(0, 0, 50, 50)
+        self.rightButton.frame =  CGRect(x:0, y:0, width:50, height:50)
         self.rightButton.imageEdgeInsets = UIEdgeInsetsMake(12,12,12,12)
         self.rightButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
         self.rightButton.tintColor = kWHITE_COLOR
         
-        self.rightButton.imageView?.contentMode = UIViewContentMode.Center
-        self.rightButton.addTarget(self, action: Selector("rightButtonTapped"), forControlEvents: UIControlEvents.TouchUpInside)
-        self.setTopRightButton(self.rightButton)
+        self.rightButton.imageView?.contentMode = UIViewContentMode.center
+        self.rightButton.addTarget(self, action: #selector(ProductsViewController.rightButtonTapped), for: UIControlEvents.touchUpInside)
+        self.setTopRightButton(rightButton: self.rightButton)
         
         //Disable user interaction untill get teh products info from server...
-        self.rightButton.userInteractionEnabled = false
+        self.rightButton.isUserInteractionEnabled = false
         
     }
     
@@ -177,9 +177,9 @@ class ProductsViewController: BaseViewController,ProductDelegate {
         }
         
     
-        let newImage =   image?.imageWithRenderingMode(.AlwaysTemplate) as UIImage!
+        let newImage =   image?.withRenderingMode(.alwaysTemplate) as UIImage!
         
-        self.rightButton.setImage(newImage, forState: .Normal)
+        self.rightButton.setImage(newImage, for: .normal)
         self.rightButton.tintColor = kWHITE_COLOR
         
     }
@@ -187,8 +187,8 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     //MARK:- Change view option
     //To Grid View
     private func changeViewOptionToGrid() {
-        self.productsCollectionView.hidden = false
-        self.productsTableView.hidden = true
+        self.productsCollectionView.isHidden = false
+        self.productsTableView.isHidden = true
         self.flowLayout.minimumInteritemSpacing = 0.5
        
         self.productsCollectionView.productsArray = self.productsTableView.productsArray
@@ -197,8 +197,8 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     
     //To List View
     private func changeViewOptionToList() {
-        self.productsCollectionView.hidden = true
-        self.productsTableView.hidden = false
+        self.productsCollectionView.isHidden = true
+        self.productsTableView.isHidden = false
         self.productsTableView.productsArray = self.productsCollectionView.productsArray
         self.productsTableView.reloadData()
     }
@@ -209,28 +209,28 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     private func getProductsFromServer() {
         
         
-        dispatch_once(&token) { () -> Void in
-            
+//        dispatch_once(&token) { () -> Void in
+        
             let urlString = API_KEY+"/"+URL_FRAGMENT_API+"/"+API_VERSION+"/"+URL_DATA_PRODUCTS+URL_FRAGMENT_JSON
-            let categoryString = DataManager.sharedDataManager().selectedProductCategory
+            let categoryString = DataManager.sharedDataManager.selectedProductCategory
             let pageNumber :Int = NUMBER_ONE
-            DataManager.sharedDataManager().currentPage = NUMBER_ONE
-            DataManager.sharedDataManager().isRequiredLoadNextPage = true
-            let params = ["category" : categoryString, "page" : String(pageNumber)] as [String : String]
-            DataManager.sharedDataManager().startActivityIndicator()
-            NetworkManager.getFromServer(urlString, params: params, success: { (response : JSON) -> Void in
+            DataManager.sharedDataManager.currentPage = NUMBER_ONE
+            DataManager.sharedDataManager.isRequiredLoadNextPage = true
+            let params = ["category" : categoryString!, "page" : String(pageNumber)] as [String : String]
+            DataManager.sharedDataManager.startActivityIndicator()
+            NetworkManager.getFromServer(urlString: urlString, params: params, success: { (response : JSON) -> Void in
                 
-                DataManager.sharedDataManager().stopActivityIndicator()
+                DataManager.sharedDataManager.stopActivityIndicator()
                 //populate received data on UI...
-                self.populateDataOnUI(response)
-                DataManager.sharedDataManager().isRequiredLoadNextPage = false
+                self.populateDataOnUI(jsonData: response)
+                DataManager.sharedDataManager.isRequiredLoadNextPage = false
                 }) { (error : NSError) -> Void in
-                    DataManager.sharedDataManager().stopActivityIndicator()
-                    DataManager.sharedDataManager().isRequiredLoadNextPage = false
-                    self.showAlertView("Error", message: error.localizedDescription)
+                    DataManager.sharedDataManager.stopActivityIndicator()
+                    DataManager.sharedDataManager.isRequiredLoadNextPage = false
+                    self.showAlertView(title: "Error", message: error.localizedDescription)
                     
                     
-            }
+//            }
 
             
         }
@@ -248,7 +248,7 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     private func populateDataOnUI(jsonData: JSON!) {
         
         //Enable right button user interaction, since response received...
-        self.rightButton.userInteractionEnabled = true
+        self.rightButton.isUserInteractionEnabled = true
         
         self.productsCollectionView.backgroundColor = kGRAY_COLOR2
         self.productsCollectionView.productsArray = jsonData["products"].arrayValue 
@@ -262,20 +262,20 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     //MARK:- Product Delegate
     func productSelected(product: JSON!) {
         
-        self.gotoProductParticularScreen(product)
+        self.gotoProductParticularScreen(product: product)
     }
     
     //MARK:- Reset Pagination Vars
     private func resetPaginationVariables() {
-        DataManager.sharedDataManager().currentPage = NUMBER_ONE
-        DataManager.sharedDataManager().isRequiredLoadNextPage = false
+        DataManager.sharedDataManager.currentPage = NUMBER_ONE
+        DataManager.sharedDataManager.isRequiredLoadNextPage = false
     }
     
     //MARK: - Goto Product Particular Screen
     private func gotoProductParticularScreen(product:JSON) {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let productsVC = storyBoard.instantiateViewControllerWithIdentifier("ProductViewController") as! ProductViewController
+        let productsVC = storyBoard.instantiateViewController(withIdentifier: "ProductViewController") as! ProductViewController
         productsVC.particularProductJSON = product
         
         self.navigationController?.pushViewController(productsVC, animated: false)

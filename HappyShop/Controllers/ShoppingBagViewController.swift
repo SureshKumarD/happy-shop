@@ -37,7 +37,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     private var selectedProductIndex : Int!
     
     //Number Formatter - (comma , )separated numbers...
-    let numberFormatter = NSNumberFormatter()
+    let numberFormatter = NumberFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,18 +46,18 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         self.initializations()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setNavigationTitle("Shopping Bag")
+        self.setNavigationTitle(title:"Shopping Bag")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loadShoppedItemsArray()
         self.itemsTableView.reloadData()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //Remove the quantity tableview from TableView
         self.quantityTableView.removeFromSuperview()
@@ -75,17 +75,17 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         self.scrollView.delegate = self
         self.itemsTableView.delegate = self
         self.itemsTableView.dataSource = self
-        self.numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        self.itemsTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.numberFormatter.numberStyle = NumberFormatter.Style.currency
+        self.itemsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         self.itemsTableView.allowsSelection = false
         self.itemsTableView.backgroundColor = kWHITE_COLOR
         self.headerContainerView.layer.masksToBounds = true
         self.headerContainerView.layer.cornerRadius = 5.0
-        self.headerContainerView.layer.borderColor = kGRAY_COLOR.CGColor
+        self.headerContainerView.layer.borderColor = kGRAY_COLOR.cgColor
         self.headerContainerView.layer.borderWidth = 0.5
         
         let frame = CGRect(x: ((WIDTH_WINDOW_FRAME / 2) - 30), y: ((HEIGHT_WINDOW_FRAME/2) - 396/2), width: 60, height: 396)
-        self.quantityTableView = UITableView(frame: frame, style: UITableViewStyle.Plain)
+        self.quantityTableView = UITableView(frame: frame, style: UITableViewStyle.plain)
         self.quantityTableView.delegate = self
         self.quantityTableView.dataSource = self
         self.quantityTableView.backgroundColor = kCLEAR_COLOR;
@@ -103,7 +103,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         headerLabel.backgroundColor = kWHITE_COLOR
         headerLabel.font = UIFont(name: "HelveticaNeue", size: 15)
         headerLabel.text = "Shopping bag items"
-        headerLabel.textAlignment = NSTextAlignment.Left
+        headerLabel.textAlignment = NSTextAlignment.left
         let borderLabel = UILabel(frame: CGRect(x: 0, y: 43.5, width: WIDTH_WINDOW_FRAME, height: 0.5))
         borderLabel.backgroundColor = kGRAY_COLOR2
         
@@ -112,12 +112,12 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
     }
     override func didFinishLayout() {
-        DataManager.sharedDataManager().setGradientBackgroundColor(self.headerContainerView)
+        DataManager.sharedDataManager.setGradientBackgroundColor(view: self.headerContainerView)
     }
     
     private func loadShoppedItemsArray() {
         self.shoppedItems = []
-        let shoppingBagItems = DataManager.sharedDataManager().selectedProductList
+        let shoppingBagItems = DataManager.sharedDataManager.selectedProductList
         var totalAmount : Double = 0.0
         var totalCount : Int = 0
         for (_, subJson) in shoppingBagItems {
@@ -132,8 +132,8 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         }
         self.totalItemsLabel.text = "Total Items  : "+"\(totalCount)"
         
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(totalAmount))) as String!
-        self.totalAmountLabel.text = "Total Amount  : "+tempString
+        let tempString = self.numberFormatter.string(from: NSNumber(value:Int(totalAmount))) as String!
+        self.totalAmountLabel.text = "Total Amount  : "+tempString!
        
         
     }
@@ -142,7 +142,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         return NUMBER_ONE
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(tableView == self.quantityTableView) {
             return 9
         }else {
@@ -155,36 +155,36 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if(tableView == self.quantityTableView) {
             
-            var cell = tableView.dequeueReusableCellWithIdentifier("QuantityCell") as? QuantityCell
+            var cell = tableView.dequeueReusableCell(withIdentifier: "QuantityCell") as? QuantityCell
             if cell == nil {
-                tableView.registerNib(UINib(nibName: "QuantityCell", bundle: nil), forCellReuseIdentifier: "QuantityCell")
-                cell = tableView.dequeueReusableCellWithIdentifier("QuantityCell") as? QuantityCell
+                tableView.register(UINib(nibName: "QuantityCell", bundle: nil), forCellReuseIdentifier: "QuantityCell")
+                cell = tableView.dequeueReusableCell(withIdentifier: "QuantityCell") as? QuantityCell
             }
             
             cell?.quantityCountLabel.text = "\(indexPath.row + NUMBER_ONE)"
             cell?.quantityCountLabel.tag = indexPath.row
-            cell?.selectionStyle = .None
+            cell?.selectionStyle = .none
             return cell!
             
         }else {
             //TODO:- Returns 'no items in your bag' messaged cell,
             //If the 'shoppedItems' array count is 0
             if(self.shoppedItems.count == NUMBER_ZERO) {
-                let cell = tableView.dequeueReusableCellWithIdentifier("NoItemsCell")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NoItemsCell")
                 return cell!
             }
             
             //Else the 'ShoppedItems' array count is > 0
             //Returns data populated 'ShoppedItemCell'
-            var cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
+            var cell = tableView.dequeueReusableCell(withIdentifier: "ShoppedItemCell") as? ShoppedItemCell
             
             if cell == nil {
-                tableView.registerNib(UINib(nibName: "ShoppedItemCell", bundle: nil), forCellReuseIdentifier: "ShoppedItemCell")
-                cell = tableView.dequeueReusableCellWithIdentifier("ShoppedItemCell") as? ShoppedItemCell
+                tableView.register(UINib(nibName: "ShoppedItemCell", bundle: nil), forCellReuseIdentifier: "ShoppedItemCell")
+                cell = tableView.dequeueReusableCell(withIdentifier: "ShoppedItemCell") as? ShoppedItemCell
                 cell?.productNameLabel.sizeToFit()
             }
             
@@ -192,7 +192,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
             let productObject = self.shoppedItems[indexPath.row]
             
             //Configure cell's subviews data...
-            self.configureShoppingBagTableView(&cell!, productObject: productObject, index: indexPath.row)
+            self.configureShoppingBagTableView(cell: &cell!, productObject: productObject, index: indexPath.row)
             
             //Return the data populated cell...
             return cell!
@@ -237,26 +237,27 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
          if(tableView == self.quantityTableView) {
-            self.showOrHideQuantityTableView(indexPath.row + NUMBER_ONE)
+            self.showOrHideQuantityTableView(index: indexPath.row + NUMBER_ONE)
         }
         
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         // Remove seperator inset
-        if(cell.respondsToSelector(Selector("setSeparatorInset:")) == true) {
-            cell.separatorInset = UIEdgeInsetsZero;
+        if(cell.responds(to: #selector(setter: UITableViewCell.separatorInset)) == true) {
+            cell.separatorInset = UIEdgeInsets.zero
         }
         
         // Prevent the cell from inheriting the Table View's margin settings
-        if(cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:")) == true) {
+        if(cell.responds(to: #selector(setter: UIView.preservesSuperviewLayoutMargins)) == true) {
             cell.preservesSuperviewLayoutMargins = false
         }
         
         // Explictly set your cell's layout margins
-        if(cell.respondsToSelector(Selector("setLayoutMargins:")) == true) {
-            cell.layoutMargins = UIEdgeInsetsZero
+        if(cell.responds(to: #selector(setter: UIView.layoutMargins)) == true) {
+            cell.layoutMargins = UIEdgeInsets.zero
         }
+        
         
         // Draw cell border of height 1px.
         let borderFrame : CGRect = CGRect(x: 15, y: cell.frame.size.height - 0.5, width: cell.frame.size.width - 30, height: 0.5)
@@ -265,18 +266,18 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         cell.addSubview(separatorView)
     }
 
-    private func configureShoppingBagTableView(inout cell : ShoppedItemCell, productObject : JSON , index : Int) {
+    private func configureShoppingBagTableView(cell : inout ShoppedItemCell, productObject : JSON , index : Int) {
         let url  = NSURL(string:  productObject["product"]["img_url"].stringValue)
         
         //Product Image
-        cell.productImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.CacheMemoryOnly)
+        cell.productImageView.sd_setImage(with: url as URL!, placeholderImage: UIImage(named: "placeholder"), options: SDWebImageOptions.cacheMemoryOnly)
         
         //Product Name
         cell.productNameLabel.text = productObject["product"]["name"].stringValue
         cell.productNameLabel.sizeToFit()
         
         //Product Price
-        let tempString = self.numberFormatter.stringFromNumber(NSNumber(integer:Int(productObject["product"]["price"].stringValue) as NSInteger!))!
+        let tempString = self.numberFormatter.string(from: NSNumber(value:Int(productObject["product"]["price"].stringValue) as NSInteger!))!
         cell.productPriceLabel.text =  tempString
         
         //Setting button's tag as index
@@ -296,7 +297,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         }
        
         //Set the quantityCountButton.
-        cell.quantityCountButton.setTitle("Nos. "+quantityCount, forState: .Normal)
+        cell.quantityCountButton.setTitle("Nos. "+quantityCount, for: .normal)
         
 
     }
@@ -307,8 +308,8 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
         let jsonObject = self.shoppedItems[index]
         let productId = jsonObject["product"]["id"].stringValue
-        let sharedDataInstance = DataManager.sharedDataManager()
-        sharedDataInstance.selectedProductList.dictionaryObject?.removeValueForKey(productId)
+        let sharedDataInstance = DataManager.sharedDataManager
+        sharedDataInstance.selectedProductList.dictionaryObject?.removeValue(forKey: productId)
         self.saveShoppingItems()
     }
     
@@ -316,16 +317,16 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         
         self.selectedProductIndex = index
         
-        self.showOrHideQuantityTableView(index)
+        self.showOrHideQuantityTableView(index: index)
     }
     
     //Save items in shopping bag...
     private func saveShoppingItems() {
         
-        var cartItems = DataManager.sharedDataManager().selectedProductList.rawString()
+        var cartItems = DataManager.sharedDataManager.selectedProductList.rawString()
         print("Success : cart items" + "\(cartItems)")
         
-        if (DataManager.sharedDataManager().selectedProductList.isEmpty == true ) {
+        if (DataManager.sharedDataManager.selectedProductList.isEmpty == true ) {
         
             cartItems = nil
         }
@@ -336,7 +337,7 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         //To make the Coredata updation simple and faster.
         //And the converted string will be replaced with the old string based on
         //the key kCART_ITEMS_KEY.
-        KeyValueDataBaseManager.saveObject(kCART_ITEMS_KEY, objectString: cartItems)
+        KeyValueDataBaseManager.saveObject(key: kCART_ITEMS_KEY, objectString: cartItems)
         
         //Load the itemsarray with updated value
         self.loadShoppedItemsArray()
@@ -353,14 +354,14 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
         if(self.isQuantityTableVisible == true) {
             
             //Make the background tangible
-            self.view.userInteractionEnabled = true
+            self.view.isUserInteractionEnabled = true
             self.view.alpha = 1.0
 
             var jsonObject = self.shoppedItems[self.selectedProductIndex] as JSON
             let productId = jsonObject["product"]["id"].stringValue
             jsonObject["product"]["quantity"].intValue = index
             
-            let sharedDataInstance = DataManager.sharedDataManager()
+            let sharedDataInstance = DataManager.sharedDataManager
             
             //Replace the particular object with the updated quantity
             sharedDataInstance.selectedProductList[productId] = jsonObject
@@ -378,11 +379,11 @@ class ShoppingBagViewController: BaseViewController, UITableViewDataSource, UITa
             //Unhide the quantity tableview...
             
             //Make the background intangible, before adding quantity tableview...
-            self.view.userInteractionEnabled = false
+            self.view.isUserInteractionEnabled = false
             self.view.alpha = 0.2
             
             //Add the quantity tableview on the window tableview...
-            let mainWindow = UIApplication.sharedApplication().keyWindow
+            let mainWindow = UIApplication.shared.keyWindow
             mainWindow?.addSubview(self.quantityTableView)
             
             //Set the isQuantityTableVisible falg to true

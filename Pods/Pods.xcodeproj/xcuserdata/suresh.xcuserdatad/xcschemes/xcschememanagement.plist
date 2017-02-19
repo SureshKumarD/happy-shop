@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-HappyShopTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HappyShopUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10590BC131416D3A027D6FAA24EA211F</key>
+		<key>007A32A0CB0017D4D5BFFBE26448A1CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1284C51B08FD6C4B603124C386611364</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29C9A0B6D1DF9A77C2A2E7C860209F5F</key>
+		<key>73FD80FAC1C5F772F1BAE56D70B5AF3A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CBC2A9BE9477295A360F60047950CB30</key>
+		<key>7A33981E8325F38406CFDD3BEE7F0F42</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BFE4F05DFB6689E0540CC40F1EAD793C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

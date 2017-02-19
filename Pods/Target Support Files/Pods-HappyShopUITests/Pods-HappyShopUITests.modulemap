@@ -1,0 +1,6 @@
+framework module Pods_HappyShopUITests {
+  umbrella header "Pods-HappyShopUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

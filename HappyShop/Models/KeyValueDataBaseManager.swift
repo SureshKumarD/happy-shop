@@ -22,11 +22,11 @@ class KeyValueDataBaseManager: NSObject {
     class func saveObject(key : String!, objectString : String!) {
         
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         
         //Check if the key is already available...
-        let tuple = KeyValueDataBaseManager.objectStringForKey(key)
+        let tuple = KeyValueDataBaseManager.objectStringForKey(key: key)
         
         //Update the managedObject since if it already exists...
         if(tuple.managedObject != nil ) {
@@ -42,8 +42,8 @@ class KeyValueDataBaseManager: NSObject {
         }else {
             //Create a new tuple for the given key-value data...
             
-            let entity =  NSEntityDescription.entityForName(kENTITY_KEY_VALUE_MANAGER, inManagedObjectContext: managedContext)
-            let keyValueTuple = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+            let entity =  NSEntityDescription.entity(forEntityName: kENTITY_KEY_VALUE_MANAGER, in: managedContext)
+            let keyValueTuple = NSManagedObject(entity: entity!, insertInto: managedContext)
             keyValueTuple.setValue(key, forKey: KEY)
             keyValueTuple.setValue(objectString, forKey: VALUE)
             // save current tuple...
@@ -59,26 +59,29 @@ class KeyValueDataBaseManager: NSObject {
     }
     
     
-    class func objectStringForKey(key : String!)-> (valueString : String!, managedObject : AnyObject?) {
+    class func objectStringForKey(key : String!)-> (valueString : String?, managedObject : AnyObject?) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
-        let fetchRequest : NSFetchRequest = NSFetchRequest(entityName: kENTITY_KEY_VALUE_MANAGER)
+        
+        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: kENTITY_KEY_VALUE_MANAGER)
         let predicate = NSPredicate(format: "%K == %@", KEY, key)
         fetchRequest.predicate = predicate
         
-        var fetchResult : [AnyObject]?
+        var fetchResult : NSAsynchronousFetchResult<NSFetchRequestResult>
+        
+        
         do {
-            fetchResult = try managedContext.executeFetchRequest(fetchRequest)
+            fetchResult = try managedContext.execute(fetchRequest) as! NSAsynchronousFetchResult<NSFetchRequestResult>
         }catch {
             fatalError("Failure to fetch requested key:\(key) - \(error)")
         }
         
         //If the key given in the predicate exists...
-        if(fetchResult?.count > NUMBER_ZERO) {
+        if((fetchResult.finalResult?.count)! > 0 ) {
             
-            let resultObject = fetchResult![0]
-            return (resultObject.valueForKey(VALUE) as! String?, resultObject as AnyObject)
+            let resultObject = fetchResult.finalResult?[0] as AnyObject
+            return (fetchResult.value(forKey: VALUE) as! String?, resultObject as AnyObject)
         }else {
             //If key is not exists...
             

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A7720425122B1872667D5F9B /* Pods_HappyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966277FAEE92D99705AF534F /* Pods_HappyShop.framework */; };
+		0B440934C096E668E8913E07 /* Pods_HappyShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824D7B7428AB9CFCAB55503B /* Pods_HappyShopTests.framework */; };
+		CB9F45BD9D3C4C8240D2CCA1 /* Pods_HappyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB7EDEDEF5EE6FFE09BDB1E /* Pods_HappyShop.framework */; };
+		F02D470C49A26D72BF91E989 /* Pods_HappyShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43C3EC857E07B6E17862632 /* Pods_HappyShopUITests.framework */; };
 		F970095C1CD38A4200D90235 /* QuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F970095A1CD38A4200D90235 /* QuantityCell.swift */; };
 		F970095D1CD38A4200D90235 /* QuantityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F970095B1CD38A4200D90235 /* QuantityCell.xib */; };
 		F984739E1CC416CE00379B39 /* HappyShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F984739D1CC416CE00379B39 /* HappyShopTests.swift */; };
@@ -68,9 +70,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		38699FE29B4755F38C522088 /* Pods-HappyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.release.xcconfig"; sourceTree = "<group>"; };
-		966277FAEE92D99705AF534F /* Pods_HappyShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF3BFCAB0B42DFAF33B2BFCD /* Pods-HappyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.debug.xcconfig"; sourceTree = "<group>"; };
+		0325A7DA3BC476AD0174F3F1 /* Pods-HappyShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShopTests/Pods-HappyShopTests.release.xcconfig"; sourceTree = "<group>"; };
+		0378B7D904AF1FE7911C8F00 /* Pods-HappyShopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShopUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShopUITests/Pods-HappyShopUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6BB7EDEDEF5EE6FFE09BDB1E /* Pods_HappyShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		824D7B7428AB9CFCAB55503B /* Pods_HappyShopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyShopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E36596A271BDA0E6919680D /* Pods-HappyShopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShopUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShopUITests/Pods-HappyShopUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9050024040EDAD6F5FC7B65E /* Pods-HappyShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.debug.xcconfig"; sourceTree = "<group>"; };
+		BE9A0EC7DD71F506BD23348B /* Pods-HappyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.release.xcconfig"; sourceTree = "<group>"; };
+		C43C3EC857E07B6E17862632 /* Pods_HappyShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECD591AE33596BB265A8CC80 /* Pods-HappyShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShopTests/Pods-HappyShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F970095A1CD38A4200D90235 /* QuantityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityCell.swift; sourceTree = "<group>"; };
 		F970095B1CD38A4200D90235 /* QuantityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuantityCell.xib; sourceTree = "<group>"; };
 		F98473851CC416CE00379B39 /* HappyShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7720425122B1872667D5F9B /* Pods_HappyShop.framework in Frameworks */,
+				CB9F45BD9D3C4C8240D2CCA1 /* Pods_HappyShop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B440934C096E668E8913E07 /* Pods_HappyShopTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,25 +148,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02D470C49A26D72BF91E989 /* Pods_HappyShopUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9C0EC8427D47C52F2E7C03C4 /* Frameworks */ = {
+		503F1C63652A13A0BF042A8E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				966277FAEE92D99705AF534F /* Pods_HappyShop.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C7F5941E5D0AEA704919B3E4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				AF3BFCAB0B42DFAF33B2BFCD /* Pods-HappyShop.debug.xcconfig */,
-				38699FE29B4755F38C522088 /* Pods-HappyShop.release.xcconfig */,
+				9050024040EDAD6F5FC7B65E /* Pods-HappyShop.debug.xcconfig */,
+				BE9A0EC7DD71F506BD23348B /* Pods-HappyShop.release.xcconfig */,
+				ECD591AE33596BB265A8CC80 /* Pods-HappyShopTests.debug.xcconfig */,
+				0325A7DA3BC476AD0174F3F1 /* Pods-HappyShopTests.release.xcconfig */,
+				0378B7D904AF1FE7911C8F00 /* Pods-HappyShopUITests.debug.xcconfig */,
+				8E36596A271BDA0E6919680D /* Pods-HappyShopUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -170,8 +176,8 @@
 				F984739C1CC416CE00379B39 /* HappyShopTests */,
 				F98473A71CC416CE00379B39 /* HappyShopUITests */,
 				F98473861CC416CE00379B39 /* Products */,
-				C7F5941E5D0AEA704919B3E4 /* Pods */,
-				9C0EC8427D47C52F2E7C03C4 /* Frameworks */,
+				503F1C63652A13A0BF042A8E /* Pods */,
+				FDDA16710C7A147CEA88792B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,6 +350,16 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		FDDA16710C7A147CEA88792B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BB7EDEDEF5EE6FFE09BDB1E /* Pods_HappyShop.framework */,
+				824D7B7428AB9CFCAB55503B /* Pods_HappyShopTests.framework */,
+				C43C3EC857E07B6E17862632 /* Pods_HappyShopUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -351,12 +367,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F98473AD1CC416CE00379B39 /* Build configuration list for PBXNativeTarget "HappyShop" */;
 			buildPhases = (
-				9E0AA29FFEB42D39C8B2E42F /* Check Pods Manifest.lock */,
+				FE65ADFB1CBD285E2331FA5E /* [CP] Check Pods Manifest.lock */,
 				F98473811CC416CE00379B39 /* Sources */,
 				F98473821CC416CE00379B39 /* Frameworks */,
 				F98473831CC416CE00379B39 /* Resources */,
-				A64B95F1087DC55126A884EF /* Embed Pods Frameworks */,
-				D7637D435CF7BCDA65CF2C66 /* Copy Pods Resources */,
+				5F6BD6E9B5FC4A2E0F54402D /* [CP] Embed Pods Frameworks */,
+				919D3554ABDE3BA180014E7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -371,9 +387,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F98473B01CC416CE00379B39 /* Build configuration list for PBXNativeTarget "HappyShopTests" */;
 			buildPhases = (
+				5053EE56F30BDA0BB3A00312 /* [CP] Check Pods Manifest.lock */,
 				F98473951CC416CE00379B39 /* Sources */,
 				F98473961CC416CE00379B39 /* Frameworks */,
 				F98473971CC416CE00379B39 /* Resources */,
+				7B6525D0A7DBBAD4D2647E44 /* [CP] Embed Pods Frameworks */,
+				C43583F98894AB850C545966 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -389,9 +408,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F98473B31CC416CE00379B39 /* Build configuration list for PBXNativeTarget "HappyShopUITests" */;
 			buildPhases = (
+				1DEE1264510F4546FD08275C /* [CP] Check Pods Manifest.lock */,
 				F98473A01CC416CE00379B39 /* Sources */,
 				F98473A11CC416CE00379B39 /* Frameworks */,
 				F98473A21CC416CE00379B39 /* Resources */,
+				741AD209012E730E1A0001C3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -485,14 +506,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9E0AA29FFEB42D39C8B2E42F /* Check Pods Manifest.lock */ = {
+		1DEE1264510F4546FD08275C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,14 +521,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A64B95F1087DC55126A884EF /* Embed Pods Frameworks */ = {
+		5053EE56F30BDA0BB3A00312 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5F6BD6E9B5FC4A2E0F54402D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,19 +551,79 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D7637D435CF7BCDA65CF2C66 /* Copy Pods Resources */ = {
+		741AD209012E730E1A0001C3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyShopUITests/Pods-HappyShopUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B6525D0A7DBBAD4D2647E44 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyShopTests/Pods-HappyShopTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		919D3554ABDE3BA180014E7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C43583F98894AB850C545966 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyShopTests/Pods-HappyShopTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE65ADFB1CBD285E2331FA5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -698,7 +794,7 @@
 		};
 		F98473AE1CC416CE00379B39 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF3BFCAB0B42DFAF33B2BFCD /* Pods-HappyShop.debug.xcconfig */;
+			baseConfigurationReference = 9050024040EDAD6F5FC7B65E /* Pods-HappyShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -707,12 +803,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.HappyShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bridging_Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		F98473AF1CC416CE00379B39 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38699FE29B4755F38C522088 /* Pods-HappyShop.release.xcconfig */;
+			baseConfigurationReference = BE9A0EC7DD71F506BD23348B /* Pods-HappyShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -721,11 +818,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.HappyShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bridging_Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		F98473B11CC416CE00379B39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECD591AE33596BB265A8CC80 /* Pods-HappyShopTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = HappyShopTests/Info.plist;
@@ -738,6 +837,7 @@
 		};
 		F98473B21CC416CE00379B39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0325A7DA3BC476AD0174F3F1 /* Pods-HappyShopTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = HappyShopTests/Info.plist;
@@ -750,6 +850,7 @@
 		};
 		F98473B41CC416CE00379B39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0378B7D904AF1FE7911C8F00 /* Pods-HappyShopUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = HappyShopUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -762,6 +863,7 @@
 		};
 		F98473B51CC416CE00379B39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E36596A271BDA0E6919680D /* Pods-HappyShopUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = HappyShopUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
