@@ -8,64 +8,36 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class NetworkManager: NSObject {
 
     //MARK: - Server Call
     // Common Get request from server
     // Fetches list of products/ particular product info.
-    class func getFromServer(urlString : String, params: [String : String], success: @escaping (JSON)-> Void, failure :@escaping ( NSError)->Void) {
-        
-        //Uses RESTful approach, ie., BaseUrl + Url fragment...
-        let manager = AFHTTPSessionManager(baseURL: URL(string:URL_BASE))
-        manager.requestSerializer = AFJSONRequestSerializer()
-        manager.responseSerializer = AFJSONResponseSerializer()
-    
-        //Setting Possible Acceptable Content Types
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/plain","application/json", "text/json", "text/javascript", "text/html","text/xml"]) as? Set<String>
-        
-        /*
-        // Add common parameters, along with the existing parameters...
-        let composedParams = NetworkManager.addCommonParameter(params)
-        */
-        manager.get(urlString, parameters: params , progress: nil, success: {
-            (task: URLSessionDataTask, responseObject: Any!) in
-            
-            //Check for valid response.
-            if let responseDict = responseObject as? Dictionary<String, AnyObject> {
-                let response = JSON(responseDict)
+    class func getFromServer(urlString : String, params: [String : String], success: @escaping (AnyObject?)-> Void, failure :@escaping ( NSError)->Void) {
+        let url = URL(string: URL_BASE+urlString)! as URL
+        Alamofire.request(
+            url,
+            method: .get,
+            parameters: nil)
+            .validate()
+            .responseJSON { (response) -> Void in
+                guard response.result.isSuccess else {
+                    print("Error while fetching remote rooms: \(response.result.error)")
+                    success(nil)
+                    return
+                }
                 
-                //Success call back to the caller...
-                success(response)
-            }
-            else {
+                guard let resultValue = response.result.value as? AnyObject,
+                    let rows = resultValue["products"] as? [[String: Any]] else {
+                        print("Malformed data received from fetchAllRooms service")
+                        success(nil)
+                        return
+                }
                 
-                //Log to acknowledge developer.
-                print("Unrecognized data received")
-            }
-            }, failure: {
-                (task: URLSessionDataTask?, error: Error) in
-                
-                //Log to acknowledge developer.
-                print("error")
-                
-                //Failure callback to the caller...
-                failure( error as NSError)
-        })
-        
-    }
-    
-    /*
-    class func addCommonParameter(params:[String : String])-> [String : String] {
-        var composedDictionary = params
-        // If the API_KEY is provided, interpolated the existing dictionary,
-        // with the new atom appid-api_key...
-        if(!(API_KEY.isEmpty)) {
-            composedDictionary["appid"] = API_KEY
+                success(rows as AnyObject?)
         }
-        return composedDictionary
         
     }
-    */
-
 }

@@ -218,9 +218,40 @@ class ProductsViewController: BaseViewController,ProductDelegate {
             DataManager.sharedDataManager.isRequiredLoadNextPage = true
             let params = ["category" : categoryString!, "page" : String(pageNumber)] as [String : String]
             DataManager.sharedDataManager.startActivityIndicator()
-            NetworkManager.getFromServer(urlString: urlString, params: params, success: { (response : JSON) -> Void in
-                
-                DataManager.sharedDataManager.stopActivityIndicator()
+            NetworkManager.getFromServer(urlString: urlString, params: params, success: { (response : AnyObject?) -> Void in
+                 DataManager.sharedDataManager.stopActivityIndicator()
+                if let productList = response as? [[String:AnyObject]] {
+                    var productsArray : [Product] = [];
+                    for eachProduct in productList {
+                        let product = Product()
+                        if let productName = eachProduct["name"] as? String? {
+                            product.productName = productName;
+                        }
+                        if let productImageUrl = eachProduct["img_url"] as? String? {
+                            product.productImageUrl = productImageUrl;
+                        }
+                        
+                        if let productId = eachProduct["id"] as? Int64? {
+                            product.productId = productId;
+                        }
+                        
+                        if let productPrice = eachProduct["price"] as? Double? {
+                            product.productPrice = productPrice;
+                        }
+                        
+                        if let productAvailability = eachProduct["under_sale"] as? Bool {
+                            product.productAvailability = productAvailability;
+                        }
+                        
+                        if let productCategory = eachProduct["category"] as? String? {
+                            product.productCategory = productCategory;
+                        }
+
+                        productsArray.append(product);
+                        
+                    }
+                }
+               
                 //populate received data on UI...
                 self.populateDataOnUI(jsonData: response)
                 DataManager.sharedDataManager.isRequiredLoadNextPage = false
@@ -245,13 +276,13 @@ class ProductsViewController: BaseViewController,ProductDelegate {
     }
     
     //MARK:- Populate Data On UI
-    private func populateDataOnUI(jsonData: JSON!) {
+    private func populateDataOnUI(productsArray: [[String : AnyObject]]!) {
         
         //Enable right button user interaction, since response received...
         self.rightButton.isUserInteractionEnabled = true
         
         self.productsCollectionView.backgroundColor = kGRAY_COLOR2
-        self.productsCollectionView.productsArray = jsonData["products"].arrayValue 
+//        self.productsCollectionView.productsArray = jsonData["products"].arrayValue 
         self.productsCollectionView.reloadData()
         self.productsTableView.productsArray = jsonData["products"].arrayValue
         self.productsTableView.reloadData()

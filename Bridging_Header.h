@@ -10,8 +10,8 @@
 #define Bridging_Header_h
 
 //AFNetworking library
-#import "Pods/AFNetworking/AFNetworking/AFNetworking.h"
-#import "Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h"
+//#import "Pods/AFNetworking/AFNetworking/AFNetworking.h"
+//#import "Pods/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h"
 
 //SDWebImage caching library
 #import "Pods/SDWebImage/SDWebImage/UIImageView+WebCache.h"

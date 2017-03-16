@@ -67,5 +67,165 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HappyShop/Views/Extensions/UIScrollView+Custom.swift"
+            timestampString = "509251335.798449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "fetchProducts()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in HappyShop):__ObjC.UIScrollView.(fetchProducts () -&gt; ()).(closure #1)"
+                  moduleName = "HappyShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suresh/Documents/HappyShop/HappyShop/Views/Extensions/UIScrollView+Custom.swift"
+                  timestampString = "510634029.189058"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in HappyShop):__ObjC.UIScrollView.(fetchProducts () -&gt; ()).(closure #2)"
+                  moduleName = "HappyShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suresh/Documents/HappyShop/HappyShop/Views/Extensions/UIScrollView+Custom.swift"
+                  timestampString = "510634029.191879"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HappyShop/Controllers/ProductsViewController.swift"
+            timestampString = "510630907.107255"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "getProductsFromServer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HappyShop/Controllers/ProductsViewController.swift"
+            timestampString = "510632574.83576"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "getProductsFromServer()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HappyShop.ProductsViewController.((getProductsFromServer in _0EE63E125B92B79632E332E0E0C3EBD2) () -&gt; ()).(closure #1)"
+                  moduleName = "HappyShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suresh/Documents/HappyShop/HappyShop/Controllers/ProductsViewController.swift"
+                  timestampString = "510634029.199732"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "565">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HappyShop.ProductsViewController.((getProductsFromServer in _0EE63E125B92B79632E332E0E0C3EBD2) () -&gt; ()).(closure #1)"
+                  moduleName = "HappyShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suresh/Documents/HappyShop/HappyShop/Controllers/ProductsViewController.swift"
+                  timestampString = "510634029.202662"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "1298">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HappyShop/Controllers/ProductsViewController.swift"
+            timestampString = "510632782.957139"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "getProductsFromServer()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HappyShop.ProductsViewController.((getProductsFromServer in _0EE63E125B92B79632E332E0E0C3EBD2) () -&gt; ()).(closure #1)"
+                  moduleName = "HappyShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suresh/Documents/HappyShop/HappyShop/Controllers/ProductsViewController.swift"
+                  timestampString = "510634029.207548"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "234"
+                  endingLineNumber = "234"
+                  offsetFromSymbolStart = "2847">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HappyShop.ProductsViewController.((getProductsFromServer in _0EE63E125B92B79632E332E0E0C3EBD2) () -&gt; ()).(closure #1)"
+                  moduleName = "HappyShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/suresh/Documents/HappyShop/HappyShop/Controllers/ProductsViewController.swift"
+                  timestampString = "510634029.209989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "234"
+                  endingLineNumber = "234"
+                  offsetFromSymbolStart = "3398">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

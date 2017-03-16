@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class BaseViewController: UIViewController {
     
@@ -19,10 +20,13 @@ class BaseViewController: UIViewController {
     private var navigationLeftButton : UIButton!
     private var navigationRightButton : UIButton!
     
+    public var reachabilityManager : NetworkReachabilityManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Initiate the Network Monitoring...
-        AFNetworkReachabilityManager.shared().stopMonitoring()
+        
+        self.reachabilityManager?.stopListening()
        
         
         self.defaultStylingAndProperties()
@@ -141,18 +145,26 @@ class BaseViewController: UIViewController {
     //MARK:- Reachability observer - notifier
     //Add Reachability Observer
     private func addreachabilityObserver() {
+        self.reachabilityManager = NetworkReachabilityManager(host: "www.apple.com")!
         
-        NotificationCenter.default.addObserver(self, selector: Selector("networkChanged:"), name: NSNotification.Name.AFNetworkingReachabilityDidChange, object: nil);
+        self.reachabilityManager?.listener = { status in
+            print("Network Status Changed: \(status)")
+            self.networkChanged(status: status);
+        }
+        
+        self.reachabilityManager?.startListening()
+       
+       
     }
     
     //Remove Rechability Observer
     private func removeReachabilityObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AFNetworkingReachabilityDidChange, object: nil);
+        self.reachabilityManager?.stopListening()
     }
     
-    func networkChanged(sender : AnyObject) {
-        let isConnected = AFNetworkReachabilityManager.shared().isReachable
-        if(!isConnected) {
+    func networkChanged(status : NetworkReachabilityManager.NetworkReachabilityStatus) {
+        
+        if(status == .notReachable) {
             let alertView = UIAlertView(title: "Network Unavailable!", message: "You're seems to be offline, please connect to a network", delegate: self, cancelButtonTitle: "Ok")
             alertView.show()
             

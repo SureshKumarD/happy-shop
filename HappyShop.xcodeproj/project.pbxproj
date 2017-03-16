@@ -10,6 +10,7 @@
 		0B440934C096E668E8913E07 /* Pods_HappyShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 824D7B7428AB9CFCAB55503B /* Pods_HappyShopTests.framework */; };
 		CB9F45BD9D3C4C8240D2CCA1 /* Pods_HappyShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB7EDEDEF5EE6FFE09BDB1E /* Pods_HappyShop.framework */; };
 		F02D470C49A26D72BF91E989 /* Pods_HappyShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43C3EC857E07B6E17862632 /* Pods_HappyShopUITests.framework */; };
+		F95DEDD91E6F9B7D00448491 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95DEDD81E6F9B7D00448491 /* Product.swift */; };
 		F970095C1CD38A4200D90235 /* QuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F970095A1CD38A4200D90235 /* QuantityCell.swift */; };
 		F970095D1CD38A4200D90235 /* QuantityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F970095B1CD38A4200D90235 /* QuantityCell.xib */; };
 		F984739E1CC416CE00379B39 /* HappyShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F984739D1CC416CE00379B39 /* HappyShopTests.swift */; };
@@ -79,6 +80,7 @@
 		BE9A0EC7DD71F506BD23348B /* Pods-HappyShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShop/Pods-HappyShop.release.xcconfig"; sourceTree = "<group>"; };
 		C43C3EC857E07B6E17862632 /* Pods_HappyShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECD591AE33596BB265A8CC80 /* Pods-HappyShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyShopTests/Pods-HappyShopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F95DEDD81E6F9B7D00448491 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F970095A1CD38A4200D90235 /* QuantityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuantityCell.swift; sourceTree = "<group>"; };
 		F970095B1CD38A4200D90235 /* QuantityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuantityCell.xib; sourceTree = "<group>"; };
 		F98473851CC416CE00379B39 /* HappyShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 				F9F0AE171CCC0F55008BD59E /* DataManager.swift */,
 				F9F0AE181CCC0F55008BD59E /* KeyValueDataBaseManager.swift */,
 				F9F0AE191CCC0F55008BD59E /* NetworkManager.swift */,
+				F95DEDD81E6F9B7D00448491 /* Product.swift */,
 				F9F0AE1A1CCC0F55008BD59E /* Protocols */,
 			);
 			path = Models;
@@ -436,13 +439,16 @@
 				TargetAttributes = {
 					F98473841CC416CE00379B39 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 					};
 					F98473981CC416CE00379B39 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 						TestTargetID = F98473841CC416CE00379B39;
 					};
 					F98473A31CC416CE00379B39 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 						TestTargetID = F98473841CC416CE00379B39;
 					};
 				};
@@ -645,6 +651,7 @@
 				F9F0AE491CCC0F55008BD59E /* Protocols.swift in Sources */,
 				F9F0AE3F1CCC0F55008BD59E /* BaseViewController.swift in Sources */,
 				F9F0AE471CCC0F55008BD59E /* KeyValueDataBaseManager.swift in Sources */,
+				F95DEDD91E6F9B7D00448491 /* Product.swift in Sources */,
 				F9F0AE411CCC0F55008BD59E /* ProductsViewController.swift in Sources */,
 				F9F0AE5B1CCC0F56008BD59E /* ProductsTableCell.swift in Sources */,
 				F9F0AE421CCC0F55008BD59E /* ProductViewController.swift in Sources */,
@@ -831,6 +838,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.HappyShopTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HappyShop.app/HappyShop";
 			};
 			name = Debug;
@@ -844,6 +852,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.HappyShopTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HappyShop.app/HappyShop";
 			};
 			name = Release;
@@ -856,6 +865,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.HappyShopUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = HappyShop;
 				USES_XCTRUNNER = YES;
 			};
@@ -869,6 +879,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.HappyShopUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = HappyShop;
 				USES_XCTRUNNER = YES;
 			};

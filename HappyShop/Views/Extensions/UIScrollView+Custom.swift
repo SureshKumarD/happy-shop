@@ -54,15 +54,15 @@ extension UIScrollView : UIScrollViewDelegate {
         let categoryString = DataManager.sharedDataManager.selectedProductCategory
         let pageNumber = DataManager.sharedDataManager.currentPage
         let params = ["category" : categoryString!, "page" : String(pageNumber)] as [String : String]
-        NetworkManager.getFromServer(urlString: urlString, params: params, success: { (response : JSON) -> Void in
+        NetworkManager.getFromServer(urlString: urlString, params: params, success: { (response : AnyObject?) -> Void in
             
             
-            if(response["products"].count > NUMBER_ZERO) {
-                //On successful response, call the particular subclass's overriden reload method.
-                self.reloadTableOrCollectionView(objects: response["products"].arrayObject! as [AnyObject])
-                sharedInstance.isRequiredLoadNextPage = false
-                DataManager.sharedDataManager.stopActivityIndicator()
-            }
+//            if(response?["products"].count > NUMBER_ZERO) {
+//                //On successful response, call the particular subclass's overriden reload method.
+//                self.reloadTableOrCollectionView(objects: response?["products"].arrayObject! as [AnyObject])
+//                sharedInstance.isRequiredLoadNextPage = false
+//                DataManager.sharedDataManager.stopActivityIndicator()
+//            }
 
             }) { (error : NSError) -> Void in
                 //Failed to fetch...

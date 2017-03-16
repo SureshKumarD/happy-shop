@@ -185,11 +185,11 @@ class ProductViewController: BaseViewController {
         let productId = particularProductJSON["id"].stringValue as String!
         let urlString = "\(API_KEY)/\(URL_FRAGMENT_API)/\(API_VERSION)/\(URL_DATA_PRODUCTS)/"+"\(productId!)"+"\(URL_FRAGMENT_JSON)"
         DataManager.sharedDataManager.startActivityIndicator()
-        NetworkManager.getFromServer(urlString: urlString, params: [:], success: { (response : JSON) -> Void in
+        NetworkManager.getFromServer(urlString: urlString, params: [:], success: { (response : AnyObject?) -> Void in
             
             DataManager.sharedDataManager.stopActivityIndicator()
             //populate received data on UI...
-            self.populateDataOnUI(jsonData: response)
+//            self.populateDataOnUI(jsonData: response)
             DataManager.sharedDataManager.isRequiredLoadNextPage = false
         }) { (error : NSError) -> Void in
             DataManager.sharedDataManager.stopActivityIndicator()

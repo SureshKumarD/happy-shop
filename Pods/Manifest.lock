@@ -1,34 +1,20 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
-  - SwiftyJSON (3.1.1)
+  - Alamofire (4.3.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - AFNetworking
+  - Alamofire
   - SDWebImage
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 22e732eb70f85c951a84f7269a403d450fef4f66
+PODFILE CHECKSUM: e5680e55ed4545f50451cb615f46cefd4efa293f
 
 COCOAPODS: 1.0.1
